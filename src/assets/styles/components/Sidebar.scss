@@ -1,0 +1,36 @@
+.sidebar {
+  color: white;
+
+  .item {
+    width: 80%;
+    margin-left: -15px;
+    position: relative;
+
+    h4 {
+      margin: 15px 0 10px 0;
+      padding-left: 20px;
+    }
+
+    &-expand {
+      position: absolute;
+      top: 10px;
+      right: 0;
+    }
+
+    &-link {
+      width: 100%;
+      height: 50px;
+      padding-left: 20px;
+      display: block;
+      line-height: 3;
+      
+      color: white;
+      
+      &.active {
+        background: brown;
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+      }
+    }
+  }
+}

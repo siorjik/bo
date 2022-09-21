@@ -1,0 +1,21 @@
+header {
+  height: 60px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: red;
+
+  .hamburger {
+    padding-left: 30px;
+  }
+
+  .logo {
+    width: 150px;
+    text-align: center;
+  }
+
+  .user {
+    padding-right: 30px;
+  }
+}

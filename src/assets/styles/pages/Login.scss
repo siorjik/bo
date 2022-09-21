@@ -1,0 +1,22 @@
+.login  {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+
+  .form {
+    width: 300px;
+    height: 240px;
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+
+      .text-input {
+        padding-bottom: 20px;
+      }
+    }
+  }
+}
