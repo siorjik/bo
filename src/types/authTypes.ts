@@ -7,6 +7,11 @@ export type AuthType = {
   user: UserType,
   userFetchStart: boolean,
   userFetchFinished: boolean,
-  status: string,
   error: string,
+  tokens: {
+    accessToken: string,
+    refreshToken: string,
+  },
+  tokensFetchStart: boolean,
+  tokensFetchFinished: boolean,
 }

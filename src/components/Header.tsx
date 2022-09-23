@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const Header = ({ menuToggle, isMobileView }: { menuToggle: () => {}, isMobileView: boolean }) => {
+export default ({ menuToggle, isMobileView }: { menuToggle: () => {}, isMobileView: boolean }) => {
   return (
     <header>
       {isMobileView && <div className='hamburger'><button onClick={menuToggle}>Menu</button></div>}
@@ -9,5 +9,3 @@ const Header = ({ menuToggle, isMobileView }: { menuToggle: () => {}, isMobileVi
     </header>
   )
 }
-
-export default Header

@@ -1,31 +1,30 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import apiRequestService from '../../services/apiRequestService'
-import { UserType } from '../../types/authTypes'
-import { USER_FETCHING, TOKENS_FETCHING } from './actionTypes'
+import { PERMISSION_LIST_FETCHING, USER_PERMISSION_LIST_FETCHING } from './actionTypes'
 
-// user fetching
-export const fetchUser = createAsyncThunk(
-  USER_FETCHING,
+import { permissionList } from '../../mocks/roles'
+
+export const fetchPermissiionList = createAsyncThunk(
+  PERMISSION_LIST_FETCHING,
   async (_, { rejectWithValue }) => {
     try {
       const todo = await apiRequestService('get', 'https://jsonplaceholder.typicode.com/todos/1')
   
-      if (todo) return { login: todo.title, pass: todo.completed }
+      if (todo) return permissionList
     } catch (err) {
       return rejectWithValue(err)
     }
   }
 )
 
-// tokens fetching
-export const fetchTokens = createAsyncThunk(
-  TOKENS_FETCHING,
-  async (data: UserType, { rejectWithValue }) => {
+export const fetchUserPermissiionList = createAsyncThunk(
+  USER_PERMISSION_LIST_FETCHING,
+  async (_, { rejectWithValue }) => {
     try {
       const todo = await apiRequestService('get', 'https://jsonplaceholder.typicode.com/todos/1')
   
-      if (todo) return { accessToken: 'access', refreshToken: 'refresh' }
+      if (todo) return [{ key: 'BackOffice'/*'SuperUser'*/ }]
     } catch (err) {
       return rejectWithValue(err)
     }

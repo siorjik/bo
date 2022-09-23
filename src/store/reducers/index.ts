@@ -1,11 +1,13 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-import authReducer from './authReducer'
-import displayReducer from './displayReducer'
+import auth from './authReducer'
+import display from './displayReducer'
+import permission from './permissionReducer'
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  display: displayReducer,
+  auth,
+  display,
+  permission,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

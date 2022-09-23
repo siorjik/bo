@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import MenuList from '@mui/material/MenuList'
 import MenuItem from '@mui/material/MenuItem'
 import ExpandLess from '@mui/icons-material/ExpandLess'
@@ -7,14 +7,21 @@ import Collapse from '@mui/material/Collapse'
 import { NavLink } from 'react-router-dom'
 
 import { getLocationProp } from '../helpers/history'
+import { getPermissions, sidebarPermissions } from '../services/permissionsService'
+import { MainContext } from '../App'
+import { kwlUsersPath, kwlSitesPath, loginPath } from '../utils/appPaths'
+import { PermissionDataType } from '../types/permissionTypes'
+import { collapseItems } from '../utils/constants'
 
 type CollapseMenuType = {
-  main: boolean,
+  kwl: boolean,
   other: boolean,
 }
 
 export default () => {
-  const [open, setOpen] = useState<CollapseMenuType>({ main: false, other: false })
+  const [open, setOpen] = useState<CollapseMenuType>({ kwl: false, other: false })
+
+  const { permissionList, userPermissionList } = useContext(MainContext)
 
   const pathname = getLocationProp('pathname')
 
@@ -28,36 +35,42 @@ export default () => {
 
   const getOpenedCollapse = (path: string) => {
     switch (path) {
-      case '/login':
-      case '/main':
-      case '/user':
-        return 'main'
+      case loginPath:
+      case kwlUsersPath:
+      case kwlSitesPath:
+        return collapseItems.KWL
+
       case '/other':
-        return 'other'   
+        return 'other'
+
       default: return ''
     }
   }
 
+  // permissions definition
+  const sidebarPermissionList = (collapseItem: string) => sidebarPermissions(permissionList, collapseItem) as PermissionDataType[]
+  const isPermission = (collapseItem: string) => getPermissions(sidebarPermissionList(collapseItem), userPermissionList)
+
   return (
     <div className="sidebar">
-      <MenuList>
-        <MenuItem>
+      {<MenuList>
+        {isPermission(collapseItems.KWL) && <MenuItem>
           <div className="item">
-            <Collapse component="div" in={open.main} collapsedSize='35px'>
-              <h4 onClick={() => onClick('main')}>
-                Main
+            <Collapse component="div" in={open.kwl} collapsedSize='35px'>
+              <h4 onClick={() => onClick(collapseItems.KWL)}>
+                Kuva White Label
                 {
-                  open.main ?
+                  open.kwl ?
                     <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
                 }
               </h4>
-              <NavLink className='item-link' to='/main'>Main Page</NavLink>
-              <NavLink className='item-link' to='/user'>User</NavLink>
+              <NavLink className='item-link' to={kwlSitesPath}>KWL Sites</NavLink>
+              <NavLink className='item-link' to={kwlUsersPath}>Users</NavLink>
             </Collapse>
           </div>
-        </MenuItem>
+        </MenuItem>}
 
-        <MenuItem>
+        {isPermission('other') && <MenuItem>
           <div className="item">
             <Collapse component="div" in={open.other} collapsedSize='35px'>
               <h4 onClick={() => onClick('other')}>
@@ -70,8 +83,8 @@ export default () => {
               <NavLink className='item-link' to='/other'>Other Page</NavLink>
             </Collapse>
           </div>
-        </MenuItem>
-      </MenuList>
+        </MenuItem>}
+      </MenuList>}
     </div>
   )
 }

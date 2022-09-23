@@ -2,7 +2,7 @@
   color: white;
 
   .item {
-    width: 80%;
+    width: 100%;
     margin-left: -15px;
     position: relative;
 
@@ -13,18 +13,18 @@
 
     &-expand {
       position: absolute;
-      top: 10px;
+      top: 15px;
       right: 0;
     }
 
     &-link {
       width: 100%;
       height: 50px;
-      padding-left: 20px;
+      padding-left: 30px;
       display: block;
       line-height: 3;
       
-      color: white;
+      color: whitesmoke;
       
       &.active {
         background: brown;

@@ -3,7 +3,7 @@ import { TextField, Button, Checkbox, FormControlLabel } from '@mui/material'
 
 import emailValidation from '../../helpers/emailValidation'
 
-import { fetchUser } from '../../store/actions/authActions'
+import { fetchTokens } from '../../store/actions/authActions'
 import { useAppDispatch } from './../../store'
 import { UserType } from '../../types/authTypes'
 
@@ -32,7 +32,7 @@ const Login = () => {
   }
 
   const onClick = async () => {
-    await dispatch(fetchUser(form))
+    await dispatch(fetchTokens(form))
   }
 
   const isDisabled = !form.login || !form.pass || err.login || err.pass

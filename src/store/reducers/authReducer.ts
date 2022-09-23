@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { AuthType, UserType } from '../../types/authTypes'
-import { fetchUser } from '../actions/authActions'
+import { fetchUser, fetchTokens } from '../actions/authActions'
 
 const initialState: AuthType = {
   user: {
@@ -10,8 +10,13 @@ const initialState: AuthType = {
   },
   userFetchStart: false,
   userFetchFinished: false,
-  status: '',
   error: '',
+  tokens: {
+    accessToken: '',
+    refreshToken: '',
+  },
+  tokensFetchStart: false,
+  tokensFetchFinished: false,
 }
 
 const auth = createSlice({
@@ -28,6 +33,18 @@ const auth = createSlice({
       state.user = action.payload
     },
     [fetchUser.rejected.type]: (state, action: PayloadAction<{ message: string }>) => {
+      state.error = action.payload.message
+    },
+
+    [fetchTokens.pending.type]: (state) => {
+      state.tokensFetchStart = true
+    },
+    [fetchTokens.fulfilled.type]: (state, action: PayloadAction<{ accessToken: string, refreshToken: string }>) => {
+      state.tokensFetchFinished = true
+      state.tokensFetchStart = false
+      state.tokens = action.payload
+    },
+    [fetchTokens.rejected.type]: (state, action: PayloadAction<{ message: string }>) => {
       state.error = action.payload.message
     },
   },
