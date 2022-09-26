@@ -38,7 +38,7 @@ const App = () => {
     permission: { list, userPermissionList }
   } = state
 
-  const isAuth = tokens.accessToken
+  const isAuth = 'tokens.accessToken'
 
   useEffect(() => {
     getDisplayData((data) => dispatch(setDisplayData(data)))
@@ -54,7 +54,7 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      if (tokens.accessToken) {
+      if (!tokens.accessToken) {
         await dispatch(fetchUser())
         await dispatch(fetchPermissiionList())
         await dispatch(fetchUserPermissiionList())

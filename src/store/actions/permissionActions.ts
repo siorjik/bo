@@ -24,7 +24,7 @@ export const fetchUserPermissiionList = createAsyncThunk(
     try {
       const todo = await apiRequestService('get', 'https://jsonplaceholder.typicode.com/todos/1')
   
-      if (todo) return [{ key: 'BackOffice'/*'SuperUser'*/ }]
+      if (todo) return [{ key: /*'BackOffice'*//*'Agents_Access'*/'Bug_Reports_Access'/*'SuperUser'*/ }]
     } catch (err) {
       return rejectWithValue(err)
     }

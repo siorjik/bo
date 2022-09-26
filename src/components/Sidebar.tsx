@@ -9,17 +9,30 @@ import { NavLink } from 'react-router-dom'
 import { getLocationProp } from '../helpers/history'
 import { getPermissions, sidebarPermissions } from '../services/permissionsService'
 import { MainContext } from '../App'
-import { kwlUsersPath, kwlSitesPath, loginPath } from '../utils/appPaths'
+import {
+  kwlUsersPath,
+  kwlSitesPath,
+  loginPath,
+  mobileUsersPath, 
+  agentsProfilesPath,
+  agentGroupsPath,
+  topUpCashrailPath,
+  topUpKuvaCoinPath,
+  topUpKuvaWhiteLabelPath,
+  topUpUsdkPath,
+  bugReportPath,
+} from '../utils/appPaths'
 import { PermissionDataType } from '../types/permissionTypes'
-import { collapseItems } from '../utils/constants'
+import { collapseItems, menuItems } from '../utils/constants'
 
 type CollapseMenuType = {
   kwl: boolean,
   other: boolean,
+  topUp: boolean,
 }
 
 export default () => {
-  const [open, setOpen] = useState<CollapseMenuType>({ kwl: false, other: false })
+  const [open, setOpen] = useState<CollapseMenuType>({ kwl: false, other: false, topUp: false })
 
   const { permissionList, userPermissionList } = useContext(MainContext)
 
@@ -40,6 +53,12 @@ export default () => {
       case kwlSitesPath:
         return collapseItems.KWL
 
+      case topUpCashrailPath:
+      case topUpKuvaCoinPath:
+      case topUpKuvaWhiteLabelPath:
+      case topUpUsdkPath:
+        return collapseItems.TOP_UP
+
       case '/other':
         return 'other'
 
@@ -48,8 +67,8 @@ export default () => {
   }
 
   // permissions definition
-  const sidebarPermissionList = (collapseItem: string) => sidebarPermissions(permissionList, collapseItem) as PermissionDataType[]
-  const isPermission = (collapseItem: string) => getPermissions(sidebarPermissionList(collapseItem), userPermissionList)
+  const sidebarPermissionList = (checkedItem: string) => sidebarPermissions(permissionList, checkedItem) as PermissionDataType[]
+  const isPermission = (checkedItem: string) => getPermissions(sidebarPermissionList(checkedItem), userPermissionList)
 
   return (
     <div className="sidebar">
@@ -67,6 +86,48 @@ export default () => {
               <NavLink className='item-link' to={kwlSitesPath}>KWL Sites</NavLink>
               <NavLink className='item-link' to={kwlUsersPath}>Users</NavLink>
             </Collapse>
+          </div>
+        </MenuItem>}
+
+        {isPermission(menuItems.MOBILE_USERS) && <MenuItem>
+          <div className="item">
+            <NavLink className='item-link' to={mobileUsersPath}>Mobile Users</NavLink>
+          </div>
+        </MenuItem>}
+
+        {isPermission(menuItems.AGENTS_PROFILES) && <MenuItem>
+          <div className="item">
+            <NavLink className='item-link' to={agentsProfilesPath}>Agents Profiles</NavLink>
+          </div>
+        </MenuItem>}
+
+        {isPermission(menuItems.AGENT_GROUPS) && <MenuItem>
+          <div className="item">
+            <NavLink className='item-link' to={agentGroupsPath}>Agent Groups</NavLink>
+          </div>
+        </MenuItem>}
+
+        {isPermission(collapseItems.TOP_UP) && <MenuItem>
+          <div className="item">
+            <Collapse component="div" in={open.topUp} collapsedSize='35px' className='collapse'>
+              <h4 onClick={() => onClick(collapseItems.TOP_UP)}>
+                Top Up
+                {
+                  open.kwl ?
+                    <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
+                }
+              </h4>
+              <NavLink className='item-link' to={topUpUsdkPath}>USDk</NavLink>
+              <NavLink className='item-link' to={topUpKuvaCoinPath}>Kuva Coin</NavLink>
+              <NavLink className='item-link' to={topUpCashrailPath}>Cashrail</NavLink>
+              <NavLink className='item-link' to={topUpKuvaWhiteLabelPath}>Kuva White Label</NavLink>
+            </Collapse>
+          </div>
+        </MenuItem>}
+
+        {isPermission(menuItems.BUG_REPORT) && <MenuItem>
+          <div className="item">
+            <NavLink className='item-link' to={bugReportPath}>Bug Report</NavLink>
           </div>
         </MenuItem>}
 
