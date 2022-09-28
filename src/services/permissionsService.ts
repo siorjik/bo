@@ -1,7 +1,7 @@
 import { PermissionDataType } from "../types/permissionTypes"
 import { collapseItems, menuItems } from '../utils/constants'
 
-const getMapedPermissionList = (permissionList: PermissionDataType[]) => {
+export const getMapedPermissionList = (permissionList: PermissionDataType[]) => {
   const result: { [key: string]: string } = {}
 
   permissionList.forEach(item => result[item.key] = item.key)
@@ -9,50 +9,23 @@ const getMapedPermissionList = (permissionList: PermissionDataType[]) => {
   return result
 }
 
-export const sidebarPermissions = (permissionList: PermissionDataType[], checkedItem: string) => {
+export const getSidebarPermissions = (permissionList: PermissionDataType[], userPermissionList: PermissionDataType[], checkedItem: string) => {
   const permissions = getMapedPermissionList(permissionList)
+  let showItemList: string[] = []
 
-  switch (checkedItem) {
-    case collapseItems.KWL:
-      return [
-        permissionList.find((item: PermissionDataType) => item.key === permissions.SuperUser),
-      ]
-    case collapseItems.TOP_UP:
-      return [
-        permissionList.find((item: PermissionDataType) => item.key === permissions.SuperUser),
-      ]
-    case 'other':
-      return [
-        permissionList.find((item: PermissionDataType) => item.key === permissions.SuperUser),
-      ]
-
-    case menuItems.MOBILE_USERS:
-      return [
-        permissionList.find((item: PermissionDataType) => item.key === permissions.SuperUser),
-      ]
-    case menuItems.AGENTS_PROFILES:
-      return [
-        permissionList.find((item: PermissionDataType) => item.key === permissions.Agents_Access),
-      ]
-    case menuItems.AGENT_GROUPS:
-      return [
-        permissionList.find((item: PermissionDataType) => item.key === permissions.Agents_Access),
-      ]
-    case menuItems.BUG_REPORT:
-      return [
-        permissionList.find((item: PermissionDataType) => item.key === permissions.Bug_Reports_Access),
-      ]
-
-    default: return [permissionList.find((item: PermissionDataType) => item.key === permissions.BackOffice),]
-  }
-}
-
-export const getPermissions =  (objectPermissionList: PermissionDataType[], userPermissionList: PermissionDataType[]) => {
-  let isPermission = false
-
-  objectPermissionList.forEach((item) => {
-    if (userPermissionList.find(perm => perm.key === item.key)) isPermission = true
+  userPermissionList.forEach(item => {
+    if (item.key === permissions.SuperUser) {
+      showItemList = [...showItemList, collapseItems.KWL]
+    } else if (item.key === permissions.Bug_Reports_Access) {
+      showItemList = [...showItemList, menuItems.BUG_REPORT]
+    } else if (item.key === permissions.Agents_Access) {
+      showItemList = [...showItemList, menuItems.AGENTS_PROFILES, menuItems.AGENT_GROUPS]
+    } else if (item.key === permissions.Top_Up_Access) {
+      showItemList = [...showItemList, collapseItems.TOP_UP]
+    } else if (item.key === permissions.Users_Access) {
+      showItemList = [...showItemList, menuItems.MOBILE_USERS]
+    }
   })
 
-  return isPermission
+  return showItemList.find(item => item === checkedItem)
 }

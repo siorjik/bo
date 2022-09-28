@@ -7,40 +7,40 @@ import Collapse from '@mui/material/Collapse'
 import { NavLink } from 'react-router-dom'
 
 import { getLocationProp } from '../helpers/history'
-import { getPermissions, sidebarPermissions } from '../services/permissionsService'
+import { getSidebarPermissions } from '../services/permissionsService'
 import { MainContext } from '../App'
 import {
+  kwlPath,
   kwlUsersPath,
   kwlSitesPath,
   loginPath,
   mobileUsersPath, 
   agentsProfilesPath,
   agentGroupsPath,
+  topUpPath,
   topUpCashrailPath,
   topUpKuvaCoinPath,
   topUpKuvaWhiteLabelPath,
   topUpUsdkPath,
   bugReportPath,
 } from '../utils/appPaths'
-import { PermissionDataType } from '../types/permissionTypes'
 import { collapseItems, menuItems } from '../utils/constants'
 
 type CollapseMenuType = {
   kwl: boolean,
-  other: boolean,
   topUp: boolean,
 }
 
 export default () => {
-  const [open, setOpen] = useState<CollapseMenuType>({ kwl: false, other: false, topUp: false })
+  const [open, setOpen] = useState<CollapseMenuType>({ kwl: false, topUp: false })
 
   const { permissionList, userPermissionList } = useContext(MainContext)
 
   const pathname = getLocationProp('pathname')
 
   useEffect(() => {
-    setOpen({ ...open, [getOpenedCollapse(pathname)]: true })
-  }, [])
+    if (userPermissionList.length) setOpen({ ...open, [getOpenedCollapse(pathname)]: true })
+  }, [userPermissionList])
 
   const onClick = (val: string) => {
     setOpen({ ...open, [val]: !open[val as keyof CollapseMenuType] })
@@ -49,26 +49,23 @@ export default () => {
   const getOpenedCollapse = (path: string) => {
     switch (path) {
       case loginPath:
+      case kwlPath:
       case kwlUsersPath:
       case kwlSitesPath:
         return collapseItems.KWL
 
+      case topUpPath:
       case topUpCashrailPath:
       case topUpKuvaCoinPath:
       case topUpKuvaWhiteLabelPath:
       case topUpUsdkPath:
         return collapseItems.TOP_UP
 
-      case '/other':
-        return 'other'
-
       default: return ''
     }
   }
 
-  // permissions definition
-  const sidebarPermissionList = (checkedItem: string) => sidebarPermissions(permissionList, checkedItem) as PermissionDataType[]
-  const isPermission = (checkedItem: string) => getPermissions(sidebarPermissionList(checkedItem), userPermissionList)
+  const isPermission = (checkedItem: string) => getSidebarPermissions(permissionList, userPermissionList, checkedItem)
 
   return (
     <div className="sidebar">
@@ -113,7 +110,7 @@ export default () => {
               <h4 onClick={() => onClick(collapseItems.TOP_UP)}>
                 Top Up
                 {
-                  open.kwl ?
+                  open.topUp ?
                     <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
                 }
               </h4>
@@ -128,21 +125,6 @@ export default () => {
         {isPermission(menuItems.BUG_REPORT) && <MenuItem>
           <div className="item">
             <NavLink className='item-link' to={bugReportPath}>Bug Report</NavLink>
-          </div>
-        </MenuItem>}
-
-        {isPermission('other') && <MenuItem>
-          <div className="item">
-            <Collapse component="div" in={open.other} collapsedSize='35px'>
-              <h4 onClick={() => onClick('other')}>
-                Other
-                {
-                  open.other ?
-                    <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
-                }
-              </h4>
-              <NavLink className='item-link' to='/other'>Other Page</NavLink>
-            </Collapse>
           </div>
         </MenuItem>}
       </MenuList>}

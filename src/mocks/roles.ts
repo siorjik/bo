@@ -25,4 +25,10 @@ export const permissionList = [
   {
     key: 'SuperUser',
   },
+  {
+    key: 'Users_Access'
+  },
+  {
+    key: 'Top_Up_Access'
+  }
 ]

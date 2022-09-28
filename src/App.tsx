@@ -6,14 +6,16 @@ import Drawer from '@mui/material/Drawer'
 import Route from './components/Router'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
+import Loader from './components/Loader'
 
 import { useAppSelector, useAppDispatch } from './store/index'
 import { history } from './helpers/history'
 import getDisplayData from './helpers/getDisplayData'
 
 import { setDisplayData } from './store/actions/displayActions'
-import { fetchUser } from './store/actions/authActions'
+import { fetchTokens, fetchUser } from './store/actions/authActions'
 import { fetchPermissiionList, fetchUserPermissiionList } from './store/actions/permissionActions'
+import { setStartLoader, setStopLoader } from './store/actions/loaderActions'
 import { UserType } from './types/authTypes'
 import { PermissionDataType } from './types/permissionTypes'
 
@@ -35,10 +37,14 @@ const App = () => {
   const {
     display: { isMobileView },
     auth: { user, tokens },
-    permission: { list, userPermissionList }
+    permission: { list, userPermissionList },
+    loader: { isShowLoader }
   } = state
 
-  const isAuth = 'tokens.accessToken'
+  const storageAccess = window.localStorage.getItem('tokens') &&
+    JSON.parse(window.localStorage.getItem('tokens')!).accessToken
+
+  const authToken = tokens.accessToken || storageAccess
 
   useEffect(() => {
     getDisplayData((data) => dispatch(setDisplayData(data)))
@@ -54,20 +60,27 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      if (!tokens.accessToken) {
+      if (storageAccess) {
+        dispatch(setStartLoader())
+
+        if (!tokens.accessToken) {
+          await dispatch(fetchTokens(null))
+        }
+
         await dispatch(fetchUser())
         await dispatch(fetchPermissiionList())
         await dispatch(fetchUserPermissiionList())
+        dispatch(setStopLoader())
       }
     })()
-  }, [tokens])
+  }, [storageAccess])
 
   return (
     <HistoryRouter history={history}>
       <CssBaseline />
-      <MainContext.Provider value={{ user, permissionList: list, userPermissionList }}>
+      {!isShowLoader && <MainContext.Provider value={{ user, permissionList: list, userPermissionList }}>
         {
-          isAuth &&
+          authToken &&
           <div className='main-wrap'>
             <Header menuToggle={async () => setOpen(!open)} isMobileView={isMobileView} />
             <div className="content">
@@ -85,15 +98,16 @@ const App = () => {
                 </Drawer>
               }
               <div className="content-wrap">
-                <main><Route isAuth={!!isAuth} /></main>
+                <main><Route isAuth={!!authToken} /></main>
                 <footer>footer</footer>
               </div>
             </div>
           </div>
         }
 
-        {!isAuth && <Route isAuth={!!isAuth} />}
-      </MainContext.Provider>
+        {!authToken && <Route isAuth={!!authToken} />}
+      </MainContext.Provider>}
+      {isShowLoader && <Loader />}
     </HistoryRouter>
   )
 }
