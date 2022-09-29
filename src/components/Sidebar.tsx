@@ -72,7 +72,7 @@ export default () => {
       {<MenuList>
         {isPermission(collapseItems.KWL) && <MenuItem>
           <div className="item">
-            <Collapse component="div" in={open.kwl} collapsedSize='35px'>
+            <Collapse component="div" in={open.kwl} collapsedSize='35px' className='collapse'>
               <h4 onClick={() => onClick(collapseItems.KWL)}>
                 Kuva White Label
                 {

@@ -1,0 +1,54 @@
+// flex
+.flex {
+  display: flex;
+}
+
+.flex-dir {
+  &-column {
+    flex-direction: column;
+  }
+}
+
+.j-content {
+  &-center {
+    justify-content: center;
+  }
+}
+
+.align-items {
+  &-center {
+    align-items: center;
+  }
+}
+
+// text
+.text {
+  &-center {
+    text-align: center;
+  }
+}
+
+.white-space {
+  &-no {
+    white-space: nowrap;
+  }
+}
+
+// width, height, margin, padding
+@for $i from 1 through 300 {
+  .h-#{$i}-vh {
+    height: $i + vh !important;
+  }
+
+  .w-#{$i}-percent {
+    width: $i * 1% !important;
+  }
+
+  .w-#{$i} {
+    width: $i + px !important;
+  }
+
+  .mt-#{$i} {
+    margin-top: $i + px !important;
+  }
+}

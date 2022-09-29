@@ -1,12 +1,10 @@
 import { useState, useEffect, createContext } from 'react'
 import CssBaseline from '@mui/material/CssBaseline'
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom'
-import Drawer from '@mui/material/Drawer'
 
-import Route from './components/Router'
-import Header from './components/Header'
-import Sidebar from './components/Sidebar'
+import Router from './components/Router'
 import Loader from './components/Loader'
+import Layout from './components/Layout'
 
 import { useAppSelector, useAppDispatch } from './store/index'
 import { history } from './helpers/history'
@@ -24,6 +22,7 @@ export const MainContext = createContext(
     user: { login: '', pass: '' } as UserType,
     permissionList: [] as PermissionDataType[],
     userPermissionList: [] as PermissionDataType[],
+    isMobileView: false
   }
 )
 
@@ -78,34 +77,10 @@ const App = () => {
   return (
     <HistoryRouter history={history}>
       <CssBaseline />
-      {!isShowLoader && <MainContext.Provider value={{ user, permissionList: list, userPermissionList }}>
-        {
-          authToken &&
-          <div className='main-wrap'>
-            <Header menuToggle={async () => setOpen(!open)} isMobileView={isMobileView} />
-            <div className="content">
-              {!isMobileView && <aside><Sidebar /></aside>}
-              {
-                isMobileView &&
-                <Drawer
-                  anchor='left'
-                  open={open}
-                  onClose={() => setOpen(!open)}
-                >
-                  <div className='content mobile-menu'>
-                    <aside><Sidebar /></aside>
-                  </div>
-                </Drawer>
-              }
-              <div className="content-wrap">
-                <main><Route isAuth={!!authToken} /></main>
-                <footer>footer</footer>
-              </div>
-            </div>
-          </div>
-        }
+      {!isShowLoader && <MainContext.Provider value={{ user, permissionList: list, userPermissionList, isMobileView }}>
+        {authToken && <Layout path={path}><Router isAuth={!!authToken} /></Layout>}
 
-        {!authToken && <Route isAuth={!!authToken} />}
+        {!authToken && <Router isAuth={!!authToken} />}
       </MainContext.Provider>}
       {isShowLoader && <Loader />}
     </HistoryRouter>

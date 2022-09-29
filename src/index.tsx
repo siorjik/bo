@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals'
 import store from './store/index'
 
 import './assets/styles/index.scss'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,7 +16,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <Provider store={store}>
-    <App />
+    <ErrorBoundary><App /></ErrorBoundary>
   </Provider>
 )
 
