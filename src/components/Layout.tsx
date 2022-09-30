@@ -36,7 +36,7 @@ export default ({ children, path }: { children: JSX.Element, path: string }) => 
                 onClose={() => setOpen(!open)}
               >
                 <div className='content mobile-menu'>
-                  <aside><Sidebar /></aside>
+                  <aside><Sidebar isMobileView={isMobileView} /></aside>
                 </div>
               </Drawer>
             }

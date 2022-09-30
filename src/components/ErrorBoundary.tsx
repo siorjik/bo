@@ -36,7 +36,7 @@ class ErrorBoundary extends Component<{ children: JSX.Element }, StateType> {
       <div className="flex align-items-center j-content-center flex-dir-column h-100-vh">
         <h2>ooops, something broke :(</h2>
         <div className="flex">
-          <h3 className="white-space-no">error message:</h3> &nbsp; <h4 className="err-mess">{this.state.message}</h4>
+          <h3 className="white-space-no">error message:</h3> &nbsp; <h3 className="err-mess">{this.state.message}</h3>
         </div>
         <Button className="w-150 mt-20" variant="outlined" onClick={() => window.location.href = '/'}>Go to main</Button>
       </div>

@@ -2,6 +2,10 @@ a {
   text-decoration: none;
 }
 
+h4, h3 {
+  margin: 0;
+}
+
 .MuiPaper-root {
   width: 50%;
 
@@ -14,13 +18,32 @@ a {
   height: calc(100vh - 60px);
   display: flex;
 
+  &:has(.menu-closed) {
+    aside {
+      width: 5%;
+      overflow: hidden;
+    }
+
+    .content-wrap {
+      width: 95%;
+    }
+  }
+
   aside {
     background-color: rgb(51, 51, 51);
     width: 20%;
+    z-index: 1;
+    transition: width 1s;
+
+    @media all and (max-width: 1200px) {
+      width: 30%;
+    }
   }
 
   &-wrap {
     width: 80%;
+    z-index: 2;
+    transition: width 1s;
 
     @media all and (max-width: 1023px) {
       width: 100%;

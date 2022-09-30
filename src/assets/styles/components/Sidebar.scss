@@ -1,14 +1,27 @@
+.switch-menu-section {
+  height: 40px;
+  width: 40px;
+  padding: 20px;
+  color: white;
+  
+  .menu-icon {
+    cursor: pointer;
+  }
+}
+
 .sidebar {
+  height: calc(100vh - 100px); // 100px: .switch-menu-section + header
+  overflow: auto;
   color: white;
 
   .item {
     width: 100%;
+    min-width: 200px;
     margin-left: -15px;
     position: relative;
 
     h4 {
-      margin: 15px 0 10px 0;
-      padding-left: 20px;
+      height: 35px;
     }
 
     &-expand {
@@ -23,8 +36,7 @@
       padding-left: 20px;
       display: block;
       line-height: 3;
-      
-      color: whitesmoke;
+      color: gainsboro;
       
       &.active {
         background: brown;
@@ -36,6 +48,11 @@
     .collapse {
       .item-link {
         padding-left: 30px;
+      }
+
+      h4 {
+        margin: 15px 0 10px 0;
+        padding-left: 20px;
       }
     }
   }
