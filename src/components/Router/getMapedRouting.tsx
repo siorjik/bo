@@ -16,7 +16,27 @@ import {
   topUpKuvaCoinPath,
   topUpCashrailPath,
   topUpKuvaWhiteLabelPath,
-  bugReportPath
+  bugReportPath,
+  contactPath,
+  kuvaLocalPath,
+  kuvaLocalSettingsPath,
+  kuvaLocalOrdersPath,
+  kuvaLocalCompaniesPath,
+  kuvaLocalCouriersPath,
+  kuvaLocalCourierDispatchOrderPath,
+  kuvaLocalUsersPath,
+  kuvaLocalContactPath,
+  kuvaLocalFeedbackPath,
+  kuvaLocalStoresPath,
+  kuvaLocalCountriesPath,
+  kuvaLocalRefoundsPath,
+  kuvaLocalSubmissionsPath,
+  kuvaLocalPromocodePath,
+  kuvaLocalReportPath,
+  kuvaLocalCreditVendorPath,
+  kuvaLocalMobileHomePageWidgetsPath,
+  kuvaLocalFacebookPath,
+  creditWalletTreasurePath,
 } from '../../utils/appPaths'
 
 import KuvaWhiteLabel from '../../pages/KuvaWhiteLabel'
@@ -31,12 +51,32 @@ import KuvaCoin from '../../pages/TopUp/KuvaCoin'
 import Cashrail from '../../pages/TopUp/Cashrail'
 import TopUpKuvaWhiteLabel from '../../pages/TopUp/KuvaWhiteLabel'
 import BugReport from '../../pages/BugReport'
+import Contact from "../../pages/Contact"
+import KuvaLocal from "../../pages/KuvaLocal"
+import Settings from "../../pages/KuvaLocal/Settings"
+import Orders from "../../pages/KuvaLocal/Orders"
+import Couriers from "../../pages/KuvaLocal/Couriers"
+import DispatchOrders from "../../pages/KuvaLocal/DispatchOrders"
+import Users from "../../pages/KuvaLocal/Users"
+import KuvaContact from '../../pages/KuvaLocal/Contact'
+import Feedback from "../../pages/KuvaLocal/Feedback"
+import Stores from "../../pages/KuvaLocal/Stores"
+import Countries from "../../pages/KuvaLocal/Countries"
+import PaymentRefunds from "../../pages/KuvaLocal/PaymentRefunds"
+import Submissions from "../../pages/KuvaLocal/Submissions"
+import Promocode from "../../pages/KuvaLocal/Promocode"
+import CharityCompanies from "../../pages/KuvaLocal/CharityCompanies"
+import Report from "../../pages/KuvaLocal/Report"
+import CreditVendor from "../../pages/KuvaLocal/CreditVendor"
+import MobileHomePage from "../../pages/KuvaLocal/MobileHomePage"
+import Facebook from "../../pages/KuvaLocal/Facebook"
+import CreditWalletTreasure from "../../pages/CreditWalletTreasure"
 
 export default (permissionList: PermissionDataType[], userPermissionList: PermissionDataType[]) => {
   const permissions = getMapedPermissionList(permissionList)
   let showRoutesList: JSX.Element[] = []
 
-  userPermissionList.forEach(item => {
+  userPermissionList.forEach((item, _, thisArr) => {
     if (item.key === permissions.SuperUser) {
       showRoutesList = [...showRoutesList,
         <Fragment key={permissions.SuperUser}>
@@ -81,6 +121,55 @@ export default (permissionList: PermissionDataType[], userPermissionList: Permis
         <Fragment key={permissions.Users_Access}>
           <Route path='/' element={<Navigate replace to={mobileUsersPath} />} />
           <Route path={mobileUsersPath} element={<MobileUsers />} />
+        </Fragment>
+      ]
+    } else if (item.key === permissions.Contacts_Access) {
+      showRoutesList = [...showRoutesList,
+        <Fragment key={permissions.Contacts_Access}>
+          <Route path='/' element={<Navigate replace to={contactPath} />} />
+          <Route path={contactPath} element={<Contact />} />
+        </Fragment>
+      ]
+    } else if (item.key === permissions.KuvaLocalAdmin) {
+      showRoutesList = [...showRoutesList,
+        <Fragment key={permissions.KuvaLocalAdmin}>
+          <Route path='/' element={<Navigate replace to={kuvaLocalPath} />} />
+          <Route path={kuvaLocalPath} element={<Navigate replace to={kuvaLocalSettingsPath} />} />
+          <Route path={kuvaLocalPath} element={<KuvaLocal />} >
+            <Route path={kuvaLocalSettingsPath} element={<Settings />} />
+            <Route path={kuvaLocalOrdersPath} element={<Orders />} />
+            <Route path={kuvaLocalCouriersPath} element={<Couriers />} />
+            <Route path={kuvaLocalCourierDispatchOrderPath} element={<DispatchOrders />} />
+            <Route path={kuvaLocalUsersPath} element={<Users />} />
+            <Route path={kuvaLocalContactPath} element={<KuvaContact />} />
+            <Route path={kuvaLocalFeedbackPath} element={<Feedback />} />
+            <Route path={kuvaLocalStoresPath} element={<Stores />} />
+            <Route path={kuvaLocalCountriesPath} element={<Countries />} />
+            <Route path={kuvaLocalRefoundsPath} element={<PaymentRefunds />} />
+            <Route path={kuvaLocalSubmissionsPath} element={<Submissions />} />
+            {
+              thisArr.find(perm => perm.key === permissions.Promo_Code_Manager) &&
+                <Route path={kuvaLocalPromocodePath} element={<Promocode />} />
+            }
+            {
+              thisArr.find(perm => perm.key === permissions.Charity_Manager) &&
+                <Route path={kuvaLocalCompaniesPath} element={<CharityCompanies />} />
+            }
+            <Route path={kuvaLocalReportPath} element={<Report />} />
+            {
+              thisArr.find(perm => perm.key === permissions.Credit_Vendor) &&
+                <Route path={kuvaLocalCreditVendorPath} element={<CreditVendor />} />
+            }
+            <Route path={kuvaLocalMobileHomePageWidgetsPath} element={<MobileHomePage />} />
+            <Route path={kuvaLocalFacebookPath} element={<Facebook />} />
+          </Route>
+        </Fragment>
+      ]
+    } else if (item.key === permissions.Credit_Wallet_Reserve_Treasury_Reconciliation) {
+      showRoutesList = [...showRoutesList,
+        <Fragment key={permissions.Credit_Wallet_Reserve_Treasury_Reconciliation}>
+          <Route path='/' element={<Navigate replace to={creditWalletTreasurePath} />} />
+          <Route path={creditWalletTreasurePath} element={<CreditWalletTreasure />} />
         </Fragment>
       ]
     }

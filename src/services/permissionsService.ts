@@ -24,6 +24,18 @@ export const getSidebarPermissions = (permissionList: PermissionDataType[], user
       showItemList = [...showItemList, collapseItems.TOP_UP]
     } else if (item.key === permissions.Users_Access) {
       showItemList = [...showItemList, menuItems.MOBILE_USERS]
+    } else if (item.key === permissions.Contacts_Access) {
+      showItemList = [...showItemList, menuItems.CONTACTS_ACCESS]
+    } else if (item.key === permissions.KuvaLocalAdmin) {
+      showItemList = [...showItemList, collapseItems.KUVA_LOCAL]
+    } else if (item.key === permissions.Charity_Manager) {
+      showItemList = [...showItemList, menuItems.CHARITY_MANAGER]
+    } else if (item.key === permissions.Credit_Vendor) {
+      showItemList = [...showItemList, menuItems.CREDIT_VENDOR]
+    } else if (item.key === permissions.Promo_Code_Manager) {
+      showItemList = [...showItemList, menuItems.PROMO_CODE_MANAGER]
+    } else if (item.key === permissions.Credit_Wallet_Reserve_Treasury_Reconciliation) {
+      showItemList = [...showItemList, menuItems.CREDIT_WALLET_TREASURE]
     }
   })
 

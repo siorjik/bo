@@ -30,5 +30,20 @@ export const permissionList = [
   },
   {
     key: 'Top_Up_Access'
+  },
+  {
+    key: 'Contacts_Access'
+  },
+  {
+    key: 'KuvaLocalAdmin',
+  },
+  {
+    key: 'Credit_Vendor',
+  },
+  {
+    key: 'Promo_Code_Manager'
+  },
+  {
+    key: 'Credit_Wallet_Reserve_Treasury_Reconciliation',
   }
 ]

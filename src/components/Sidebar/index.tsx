@@ -7,32 +7,51 @@ import Collapse from '@mui/material/Collapse'
 import { NavLink } from 'react-router-dom'
 import { MenuRounded, MenuOpenRounded } from '@mui/icons-material'
 
-import { getLocationProp } from '../helpers/history'
-import { getSidebarPermissions } from '../services/permissionsService'
-import { MainContext } from '../App'
+import { getLocationProp } from '../../helpers/history'
+import { getSidebarPermissions } from '../../services/permissionsService'
+import { MainContext } from '../../App'
 import {
-  kwlPath,
   kwlUsersPath,
   kwlSitesPath,
   mobileUsersPath,
   agentsProfilesPath,
   agentGroupsPath,
-  topUpPath,
   topUpCashrailPath,
   topUpKuvaCoinPath,
   topUpKuvaWhiteLabelPath,
   topUpUsdkPath,
   bugReportPath,
-} from '../utils/appPaths'
-import { collapseItems, menuItems } from '../utils/constants'
+  contactPath,
+  kuvaLocalSettingsPath,
+  kuvaLocalOrdersPath,
+  kuvaLocalCouriersPath,
+  kuvaLocalCourierDispatchOrderPath,
+  kuvaLocalUsersPath,
+  kuvaLocalContactPath,
+  kuvaLocalFeedbackPath,
+  kuvaLocalStoresPath,
+  kuvaLocalCountriesPath,
+  kuvaLocalRefoundsPath,
+  kuvaLocalSubmissionsPath,
+  kuvaLocalPromocodePath,
+  kuvaLocalCompaniesPath,
+  kuvaLocalReportPath,
+  kuvaLocalCreditVendorPath,
+  kuvaLocalMobileHomePageWidgetsPath,
+  kuvaLocalFacebookPath,
+  creditWalletTreasurePath,
+} from '../../utils/appPaths'
+import { collapseItems, menuItems } from '../../utils/constants'
+import getOpenedCollapse from './getOpenedCollapse'
 
 type CollapseMenuType = {
   kwl: boolean,
   topUp: boolean,
+  kuvaLocal: boolean,
 }
 
 export default ({ isMobileView }: { isMobileView?: boolean }) => {
-  const [open, setOpen] = useState<CollapseMenuType>({ kwl: false, topUp: false })
+  const [open, setOpen] = useState<CollapseMenuType>({ kwl: false, topUp: false, kuvaLocal: false })
   const [menuOpen, setMenuOpen] = useState(true)
 
   const { permissionList, userPermissionList } = useContext(MainContext)
@@ -51,23 +70,7 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
     if (!isLink) setOpen({ ...open, [val]: !open[val as keyof CollapseMenuType] })
   }
 
-  const getOpenedCollapse = (path: string) => {
-    switch (path) {
-      case kwlPath:
-      case kwlUsersPath:
-      case kwlSitesPath:
-        return collapseItems.KWL
-
-      case topUpPath:
-      case topUpCashrailPath:
-      case topUpKuvaCoinPath:
-      case topUpKuvaWhiteLabelPath:
-      case topUpUsdkPath:
-        return collapseItems.TOP_UP
-
-      default: return ''
-    }
-  }
+  
 
   const isPermission = (checkedItem: string) => getSidebarPermissions(permissionList, userPermissionList, checkedItem)
 
@@ -135,6 +138,58 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
           {isPermission(menuItems.BUG_REPORT) && <MenuItem>
             <div className="item">
               <h4><NavLink className='item-link' to={bugReportPath}>Bug Report</NavLink></h4>
+            </div>
+          </MenuItem>}
+
+          {isPermission(menuItems.CONTACTS_ACCESS) && <MenuItem>
+            <div className="item">
+              <h4><NavLink className='item-link' to={contactPath}>Contact</NavLink></h4>
+            </div>
+          </MenuItem>}
+
+          {isPermission(collapseItems.KUVA_LOCAL) && <MenuItem onClick={(e) => onClick(e, collapseItems.KUVA_LOCAL)}>
+            <div className="item">
+              <Collapse component="div" in={open.kuvaLocal} collapsedSize='35px' className='collapse'>
+                <h4>
+                  Kuva Local
+                  {
+                    open.kuvaLocal ?
+                      <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
+                  }
+                </h4>
+                <NavLink className='item-link' to={kuvaLocalSettingsPath}>Settings</NavLink>
+                <NavLink className='item-link' to={kuvaLocalOrdersPath}>Orders</NavLink>
+                <NavLink className='item-link' to={kuvaLocalCouriersPath}>Couries</NavLink>
+                <NavLink className='item-link' to={kuvaLocalCourierDispatchOrderPath}>Dispatch Orders</NavLink>
+                <NavLink className='item-link' to={kuvaLocalUsersPath}>Users</NavLink>
+                <NavLink className='item-link' to={kuvaLocalContactPath}>Contact</NavLink>
+                <NavLink className='item-link' to={kuvaLocalFeedbackPath}>Feedback</NavLink>
+                <NavLink className='item-link' to={kuvaLocalStoresPath}>Stores</NavLink>
+                <NavLink className='item-link' to={kuvaLocalCountriesPath}>Countries</NavLink>
+                <NavLink className='item-link' to={kuvaLocalRefoundsPath}>Payment Refunds</NavLink>
+                <NavLink className='item-link' to={kuvaLocalSubmissionsPath}>Submissions</NavLink>
+                {
+                  isPermission(menuItems.PROMO_CODE_MANAGER) && 
+                   <NavLink className='item-link' to={kuvaLocalPromocodePath}>Promocode</NavLink>
+                }
+                {
+                  isPermission(menuItems.CHARITY_MANAGER) &&
+                    <NavLink className='item-link' to={kuvaLocalCompaniesPath}>Charity Companies</NavLink>
+                }
+                <NavLink className='item-link' to={kuvaLocalReportPath}>Report</NavLink>
+                {
+                  isPermission(menuItems.CREDIT_VENDOR) &&
+                    <NavLink className='item-link' to={kuvaLocalCreditVendorPath}>Credit Vendor</NavLink>
+                }
+                <NavLink className='item-link' to={kuvaLocalMobileHomePageWidgetsPath}>Mobile Home Page Widgets</NavLink>
+                <NavLink className='item-link' to={kuvaLocalFacebookPath}>Facebook</NavLink>
+              </Collapse>
+            </div>
+          </MenuItem>}
+
+          {isPermission(menuItems.CREDIT_WALLET_TREASURE) && <MenuItem>
+            <div className="item">
+              <h4><NavLink className='item-link' to={creditWalletTreasurePath}>Credit Wallet Treasure</NavLink></h4>
             </div>
           </MenuItem>}
         </MenuList>}
