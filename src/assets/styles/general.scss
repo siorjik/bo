@@ -2,7 +2,7 @@ a {
   text-decoration: none;
 }
 
-h4, h3 {
+h4, h3, h2 {
   margin: 0;
 }
 
@@ -17,6 +17,11 @@ h4, h3 {
 .content {
   height: calc(100vh - 60px);
   display: flex;
+  overflow: auto;
+
+  &.simple {
+    height: calc(95vh - 60px);
+  }
 
   &:has(.menu-closed) {
     aside {
@@ -53,11 +58,6 @@ h4, h3 {
       height: calc(95vh - 60px);
       background-color: aquamarine;
     }
-
-    footer {
-      height: 5vh;
-      background-color: greenyellow;
-    }
   }
 
   &.mobile-menu {
@@ -71,4 +71,18 @@ h4, h3 {
 
 .err-mess {
   color: red;
+}
+
+.profile-form {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+
+  @media all and (max-width: 1199px) {
+    width: 50%;
+  }
+
+  @media all and (max-width: 767px) {
+    width: 80%;
+  }
 }

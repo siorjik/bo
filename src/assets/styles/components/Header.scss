@@ -1,21 +1,28 @@
 header {
   height: 60px;
-  padding: 10px;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: red;
 
   .hamburger {
-    padding-left: 30px;
+    width: 50px;
   }
 
   .logo {
-    width: 150px;
-    text-align: center;
+    display: flex;
+    align-items: center;
   }
 
   .user {
-    padding-right: 30px;
+    line-height: 0;
+    .icon {
+      margin-right: 10px;
+      display: inline;
+      font-size: 35px;
+      color: black;
+      cursor: pointer;
+    }
   }
 }

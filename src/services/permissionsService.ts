@@ -9,7 +9,11 @@ export const getMapedPermissionList = (permissionList: PermissionDataType[]) => 
   return result
 }
 
-export const getSidebarPermissions = (permissionList: PermissionDataType[], userPermissionList: PermissionDataType[], checkedItem: string) => {
+export const getSidebarPermissions = (
+  permissionList: PermissionDataType[],
+  userPermissionList: PermissionDataType[],
+  checkedItem: string
+) => {
   const permissions = getMapedPermissionList(permissionList)
   let showItemList: string[] = []
 

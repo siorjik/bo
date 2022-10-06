@@ -1,12 +1,14 @@
 import { useState, useContext, useEffect } from 'react'
 import Drawer from '@mui/material/Drawer'
 
-import Header from "./Header"
-import Sidebar from "./Sidebar"
-import { MainContext } from '../App'
+import Header from "../Header"
+import Footer from '../Footer'
+import Sidebar from "../Sidebar"
+import { MainContext } from '../../App'
 
-import { pageNotFoundPath } from '../utils/appPaths'
-import { getLocationProp } from '../helpers/history'
+import { pageNotFoundPath, profilePath } from '../../utils/appPaths'
+import { getLocationProp } from '../../helpers/history'
+import SimpleLayout from './SimpleLayout'
 
 export default ({ children, path }: { children: JSX.Element, path: string }) => {
   const [open, setOpen] = useState<boolean>(false)
@@ -20,10 +22,11 @@ export default ({ children, path }: { children: JSX.Element, path: string }) => 
   }, [path])
 
   const isPNF = pathname === pageNotFoundPath
+  const isProfile = pathname === profilePath
 
   return (
     <>
-      {!isPNF &&
+      {!isPNF && !isProfile &&
         <>
           <Header menuToggle={async () => setOpen(!open)} isMobileView={isMobileView} />
           <div className="content">
@@ -42,13 +45,14 @@ export default ({ children, path }: { children: JSX.Element, path: string }) => 
             }
             <div className="content-wrap">
               <main>{children}</main>
-              <footer>footer</footer>
+              <Footer />
             </div>
           </div>
         </>}
-        {
-          isPNF && <main>{children}</main>
-        }
+
+        {isPNF && <main>{children}</main>}
+
+        {isProfile && <SimpleLayout>{children}</SimpleLayout>}
     </>
   )
 }

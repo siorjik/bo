@@ -4,12 +4,13 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { MainContext } from '../../App'
 import getMapedRouting from './getMapedRouting'
 
-import { loginPath, pageNotFoundPath } from '../../utils/appPaths'
+import { loginPath, pageNotFoundPath, profilePath } from '../../utils/appPaths'
 
 import Login from '../../pages/Login'
 import PageNotFound from '../../pages/PageNotFound'
 
 import Loader from '../Loader'
+import Profile from '../../pages/Profile'
 
 type RouterProps = {
   isAuth: boolean,
@@ -27,6 +28,7 @@ export default ({ isAuth }: RouterProps) => {
               !!getMapedRouting(permissionList, userPermissionList).length ?
               <>
                 {getMapedRouting(permissionList, userPermissionList)}
+                <Route path={profilePath} element={<Profile />} />
                 <Route path={loginPath} element={<Navigate replace to='/' />} />
                 <Route path={pageNotFoundPath} element={<PageNotFound />} />
                 <Route path='*' element={<Navigate replace to={pageNotFoundPath} />} />
