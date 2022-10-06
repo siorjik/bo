@@ -5,7 +5,7 @@ import emailValidation from '../../helpers/emailValidation'
 
 import { fetchTokens } from '../../store/actions/authActions'
 import { useAppDispatch } from './../../store'
-import { UserType } from '../../types/authTypes'
+import { UserDataType } from '../../types/userTypes'
 
 type LoginErrState = {
   login: boolean,
@@ -13,7 +13,7 @@ type LoginErrState = {
 }
 
 const Login = () => {
-  const [form, setForm] = useState<UserType>({ login: '', pass:'' })
+  const [form, setForm] = useState<UserDataType>({ login: '', pass:'' })
   const [err, setErr] = useState<LoginErrState>({ login: false, pass: false })
 
   const dispatch = useAppDispatch()

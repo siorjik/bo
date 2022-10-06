@@ -11,15 +11,16 @@ import { history } from './helpers/history'
 import getDisplayData from './helpers/getDisplayData'
 
 import { setDisplayData } from './store/actions/displayActions'
-import { fetchTokens, fetchUser } from './store/actions/authActions'
+import { fetchTokens } from './store/actions/authActions'
+import { fetchUser } from './store/actions/userActions'
 import { fetchPermissiionList, fetchUserPermissiionList } from './store/actions/permissionActions'
 import { setStartLoader, setStopLoader } from './store/actions/loaderActions'
-import { UserType } from './types/authTypes'
+import { UserDataType } from './types/userTypes'
 import { PermissionDataType } from './types/permissionTypes'
 
 export const MainContext = createContext(
   {
-    user: { login: '', pass: '' } as UserType,
+    user: { login: '', pass: '' } as UserDataType,
     permissionList: [] as PermissionDataType[],
     userPermissionList: [] as PermissionDataType[],
     isMobileView: false
@@ -35,7 +36,8 @@ const App = () => {
 
   const {
     display: { isMobileView },
-    auth: { user, tokens },
+    auth: { tokens },
+    user: { data },
     permission: { list, userPermissionList },
     loader: { isShowLoader }
   } = state
@@ -77,7 +79,7 @@ const App = () => {
   return (
     <HistoryRouter history={history}>
       <CssBaseline />
-      {!isShowLoader && <MainContext.Provider value={{ user, permissionList: list, userPermissionList, isMobileView }}>
+      {!isShowLoader && <MainContext.Provider value={{ user: data, permissionList: list, userPermissionList, isMobileView }}>
         {authToken && <Layout path={path}><Router isAuth={!!authToken} /></Layout>}
 
         {!authToken && <Router isAuth={!!authToken} />}

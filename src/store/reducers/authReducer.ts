@@ -1,15 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { AuthType, UserType } from '../../types/authTypes'
-import { fetchUser, fetchTokens } from '../actions/authActions'
+import { AuthType } from '../../types/authTypes'
+import { fetchTokens } from '../actions/authActions'
 
 const initialState: AuthType = {
-  user: {
-    login: '',
-    pass: '',
-  },
-  userFetchStart: false,
-  userFetchFinished: false,
   error: '',
   tokens: {
     accessToken: '',
@@ -24,18 +18,6 @@ const auth = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchUser.pending.type]: (state) => {
-      state.userFetchStart = true
-    },
-    [fetchUser.fulfilled.type]: (state, action: PayloadAction<UserType>) => {
-      state.userFetchFinished = true
-      state.userFetchStart = false
-      state.user = action.payload
-    },
-    [fetchUser.rejected.type]: (state, action: PayloadAction<{ message: string }>) => {
-      state.error = action.payload.message
-    },
-
     [fetchTokens.pending.type]: (state) => {
       state.tokensFetchStart = true
     },
