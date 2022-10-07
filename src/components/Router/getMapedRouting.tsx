@@ -82,8 +82,8 @@ import OTRates from "../../pages/CurrencyCloud/OTRates"
 import TopUpRates from "../../pages/CurrencyCloud/TopUpRates"
 import AllRates from "../../pages/CurrencyCloud/AllRates"
 
-export default (permissionList: PermissionDataType[], userPermissionList: PermissionDataType[]) => {
-  const permissions = getMapedPermissionList(permissionList)
+export default (userPermissionList: PermissionDataType[]) => {
+  const permissions = getMapedPermissionList(userPermissionList)
   let showRoutesList: JSX.Element[] = []
 
   userPermissionList.forEach((item, _, thisArr) => {

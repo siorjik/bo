@@ -59,7 +59,7 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
   const [open, setOpen] = useState<CollapseMenuType>({ kwl: false, topUp: false, kuvaLocal: false, currencyCloud: false })
   const [menuOpen, setMenuOpen] = useState(true)
 
-  const { permissionList, userPermissionList } = useContext(MainContext)
+  const { userPermissionList } = useContext(MainContext)
 
   const pathname = getLocationProp('pathname')
 
@@ -77,7 +77,7 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
 
   
 
-  const isPermission = (checkedItem: string) => getSidebarPermissions(permissionList, userPermissionList, checkedItem)
+  const isPermission = (checkedItem: string) => getSidebarPermissions(userPermissionList, checkedItem)
 
   return (
     <>

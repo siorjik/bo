@@ -17,7 +17,7 @@ type RouterProps = {
 }
 
 export default ({ isAuth }: RouterProps) => {
-  const { permissionList, userPermissionList } = useContext(MainContext)
+  const { userPermissionList } = useContext(MainContext)
 
   return (
     <>
@@ -25,9 +25,9 @@ export default ({ isAuth }: RouterProps) => {
         isAuth ?
           <Routes>
             {
-              !!getMapedRouting(permissionList, userPermissionList).length ?
+              !!getMapedRouting(userPermissionList).length ?
               <>
-                {getMapedRouting(permissionList, userPermissionList)}
+                {getMapedRouting(userPermissionList)}
                 <Route path={profilePath} element={<Profile />} />
                 <Route path={loginPath} element={<Navigate replace to='/' />} />
                 <Route path={pageNotFoundPath} element={<PageNotFound />} />
