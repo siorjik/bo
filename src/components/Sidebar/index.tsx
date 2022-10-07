@@ -40,6 +40,10 @@ import {
   kuvaLocalMobileHomePageWidgetsPath,
   kuvaLocalFacebookPath,
   creditWalletTreasurePath,
+  currencyCloudKLRatesPath,
+  currencyCloudOTRatesPath,
+  currencyCloudTopUpRatesPath,
+  currencyCloudAllRatesPath,
 } from '../../utils/appPaths'
 import { collapseItems, menuItems } from '../../utils/constants'
 import getOpenedCollapse from './getOpenedCollapse'
@@ -48,10 +52,11 @@ type CollapseMenuType = {
   kwl: boolean,
   topUp: boolean,
   kuvaLocal: boolean,
+  currencyCloud: boolean,
 }
 
 export default ({ isMobileView }: { isMobileView?: boolean }) => {
-  const [open, setOpen] = useState<CollapseMenuType>({ kwl: false, topUp: false, kuvaLocal: false })
+  const [open, setOpen] = useState<CollapseMenuType>({ kwl: false, topUp: false, kuvaLocal: false, currencyCloud: false })
   const [menuOpen, setMenuOpen] = useState(true)
 
   const { permissionList, userPermissionList } = useContext(MainContext)
@@ -190,6 +195,24 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
           {isPermission(menuItems.CREDIT_WALLET_TREASURE) && <MenuItem>
             <div className="item">
               <h4><NavLink className='item-link' to={creditWalletTreasurePath}>Credit Wallet Treasure</NavLink></h4>
+            </div>
+          </MenuItem>}
+
+          {isPermission(collapseItems.CURRENCY_CLOUD) && <MenuItem onClick={(e) => onClick(e, collapseItems.CURRENCY_CLOUD)}>
+            <div className="item">
+              <Collapse component="div" in={open.currencyCloud} collapsedSize='35px' className='collapse'>
+                <h4>
+                  Currency Cloud
+                  {
+                    open.currencyCloud ?
+                      <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
+                  }
+                </h4>
+                <NavLink className='item-link' to={currencyCloudKLRatesPath}>Rates for KL</NavLink>
+                <NavLink className='item-link' to={currencyCloudOTRatesPath}>Rates for OT</NavLink>
+                <NavLink className='item-link' to={currencyCloudTopUpRatesPath}>Rates for Top Up</NavLink>
+                <NavLink className='item-link' to={currencyCloudAllRatesPath}>All Rates</NavLink>
+              </Collapse>
             </div>
           </MenuItem>}
         </MenuList>}

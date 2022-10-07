@@ -1,7 +1,8 @@
 export const collapseItems = {
   KWL: 'kwl',
   TOP_UP: 'topUp',
-  KUVA_LOCAL: 'kuvaLocal'
+  KUVA_LOCAL: 'kuvaLocal',
+  CURRENCY_CLOUD: 'currencyCloud'
 }
 
 export const menuItems = {
@@ -13,5 +14,5 @@ export const menuItems = {
   CHARITY_MANAGER: 'charityManager',
   CREDIT_WALLET_TREASURE: 'creditWalletTreasure',
   CREDIT_VENDOR: 'creditVendor',
-  PROMO_CODE_MANAGER: 'promoCodeManager'
+  PROMO_CODE_MANAGER: 'promoCodeManager',
 }

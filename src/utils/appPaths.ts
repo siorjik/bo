@@ -29,6 +29,12 @@ export const kuvaLocalCreditVendorPath = `${kuvaLocalPath}/credit-vendor`
 export const kuvaLocalMobileHomePageWidgetsPath = `${kuvaLocalPath}/mobile-home-page-widgets`
 export const kuvaLocalFacebookPath = `${kuvaLocalPath}/facebook`
 
+export const currencyCloudPath = '/currency-cloud'
+export const currencyCloudKLRatesPath = `${currencyCloudPath}/kl-rates`
+export const currencyCloudOTRatesPath = `${currencyCloudPath}/ot-rates`
+export const currencyCloudTopUpRatesPath = `${currencyCloudPath}/top-up-rates`
+export const currencyCloudAllRatesPath = `${currencyCloudPath}/all-rates`
+
 export const mobileUsersPath = '/mobile-users'
 export const agentsProfilesPath = '/agents-profiles'
 export const agentGroupsPath = '/agent-groups'

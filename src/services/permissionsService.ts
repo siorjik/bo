@@ -40,6 +40,8 @@ export const getSidebarPermissions = (
       showItemList = [...showItemList, menuItems.PROMO_CODE_MANAGER]
     } else if (item.key === permissions.Credit_Wallet_Reserve_Treasury_Reconciliation) {
       showItemList = [...showItemList, menuItems.CREDIT_WALLET_TREASURE]
+    } else if (item.key === permissions.Currency_Cloud_Rate_Access) {
+      showItemList = [...showItemList, collapseItems.CURRENCY_CLOUD]
     }
   })
 

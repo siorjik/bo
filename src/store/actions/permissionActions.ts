@@ -36,6 +36,7 @@ export const fetchUserPermissiionList = createAsyncThunk(
         { key: 'Credit_Vendor' },
         { key: 'Promo_Code_Manager' },
         { key: 'Credit_Wallet_Reserve_Treasury_Reconciliation' },
+        { key: 'Currency_Cloud_Rate_Access' }
       ]
     } catch (err) {
       return rejectWithValue(err)

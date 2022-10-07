@@ -105,9 +105,9 @@ const Profile = () => {
   )
   
   const tabsData = [
-    { label: 'Profile', content: profileForm },
-    { label: 'Password', content: passwordForm },
-    { label: <span>Two-factor <br />authentication</span>, content: <TwoFaAuthContent tabName={tabName} /> },
+    { name: 'profile', title: 'Profile', content: profileForm },
+    { name: 'password', title: 'Password', content: passwordForm },
+    { name: 'twoFa', title: <span>Two-factor <br />authentication</span>, content: <TwoFaAuthContent tabName={tabName} /> },
   ]
 
   const breadCrumbsData = [

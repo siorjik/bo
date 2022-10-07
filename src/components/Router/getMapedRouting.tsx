@@ -37,6 +37,11 @@ import {
   kuvaLocalMobileHomePageWidgetsPath,
   kuvaLocalFacebookPath,
   creditWalletTreasurePath,
+  currencyCloudPath,
+  currencyCloudKLRatesPath,
+  currencyCloudOTRatesPath,
+  currencyCloudTopUpRatesPath,
+  currencyCloudAllRatesPath,
 } from '../../utils/appPaths'
 
 import KuvaWhiteLabel from '../../pages/KuvaWhiteLabel'
@@ -71,6 +76,11 @@ import CreditVendor from "../../pages/KuvaLocal/CreditVendor"
 import MobileHomePage from "../../pages/KuvaLocal/MobileHomePage"
 import Facebook from "../../pages/KuvaLocal/Facebook"
 import CreditWalletTreasure from "../../pages/CreditWalletTreasure"
+import CurrencyCloud from "../../pages/CurrencyCloud"
+import KLRates from "../../pages/CurrencyCloud/KLRates"
+import OTRates from "../../pages/CurrencyCloud/OTRates"
+import TopUpRates from "../../pages/CurrencyCloud/TopUpRates"
+import AllRates from "../../pages/CurrencyCloud/AllRates"
 
 export default (permissionList: PermissionDataType[], userPermissionList: PermissionDataType[]) => {
   const permissions = getMapedPermissionList(permissionList)
@@ -170,6 +180,19 @@ export default (permissionList: PermissionDataType[], userPermissionList: Permis
         <Fragment key={permissions.Credit_Wallet_Reserve_Treasury_Reconciliation}>
           <Route path='/' element={<Navigate replace to={creditWalletTreasurePath} />} />
           <Route path={creditWalletTreasurePath} element={<CreditWalletTreasure />} />
+        </Fragment>
+      ]
+    } else if (item.key === permissions.Currency_Cloud_Rate_Access) {
+      showRoutesList = [...showRoutesList,
+        <Fragment key={permissions.Currency_Cloud_Rate_Access}>
+          <Route path='/' element={<Navigate replace to={currencyCloudPath} />} />
+          <Route path={currencyCloudPath} element={<Navigate replace to={currencyCloudKLRatesPath} />} />
+          <Route path={currencyCloudPath} element={<CurrencyCloud />} >
+            <Route path={currencyCloudKLRatesPath} element={<KLRates />} />
+            <Route path={currencyCloudOTRatesPath} element={<OTRates />} />
+            <Route path={currencyCloudTopUpRatesPath} element={<TopUpRates />} />
+            <Route path={currencyCloudAllRatesPath} element={<AllRates />} />
+          </Route>
         </Fragment>
       ]
     }

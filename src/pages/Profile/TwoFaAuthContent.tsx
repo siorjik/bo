@@ -12,7 +12,7 @@ export default ({ tabName }: { tabName: string | JSX.Element }) => {
     const { configure, reset } = isShowTwoFaSettings
 
     if (
-      (tabName === 'Profile' || tabName === 'Password') && (configure || reset)) {
+      (tabName !== 'twoFa') && (configure || reset)) {
         setShowTwoFaSettings({ configure: false, reset: false })
       }
   }, [tabName])

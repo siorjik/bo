@@ -27,6 +27,11 @@ import {
   kuvaLocalCreditVendorPath,
   kuvaLocalMobileHomePageWidgetsPath,
   kuvaLocalFacebookPath,
+  currencyCloudPath,
+  currencyCloudKLRatesPath,
+  currencyCloudTopUpRatesPath,
+  currencyCloudAllRatesPath,
+  currencyCloudOTRatesPath,
 } from '../../utils/appPaths'
 
 export default (path: string) => {
@@ -62,6 +67,13 @@ export default (path: string) => {
     case kuvaLocalMobileHomePageWidgetsPath:
     case kuvaLocalFacebookPath:
       return collapseItems.KUVA_LOCAL
+
+    case currencyCloudPath:
+    case currencyCloudKLRatesPath:
+    case currencyCloudOTRatesPath:
+    case currencyCloudTopUpRatesPath:
+    case currencyCloudAllRatesPath:
+      return collapseItems.CURRENCY_CLOUD
 
     default: return ''
   }
