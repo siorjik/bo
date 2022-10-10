@@ -26,7 +26,7 @@ class ErrorBoundary extends Component<{ children: JSX.Element }, StateType> {
   checkResponse = () => axios.interceptors.response.use((resp) => {
     return resp
   }, (error) => {
-    this.setState({ hasError: true, message: error.message })
+    if (error.response.status !== 401) this.setState({ hasError: true, message: error.message })
 
     return Promise.reject(error)
   })

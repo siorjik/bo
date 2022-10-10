@@ -7,8 +7,13 @@ import logo from '../assets/images/logo.svg'
 import { loginPath, profilePath } from '../utils/appPaths'
 import { goTo } from '../helpers/history'
 
+import { apiLogOutPath } from '../utils/apiPaths'
+import apiRequestService from '../services/apiRequestService'
+
 export default ({ menuToggle, isMobileView }: { menuToggle?: () => {}, isMobileView?: boolean }) => {
-  const handleClick = () => {
+  const handleClick = async() => {
+    await apiRequestService('post', apiLogOutPath)
+
     window.localStorage.removeItem('tokens')
     window.location.href = loginPath
   }

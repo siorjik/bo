@@ -5,8 +5,10 @@ import { fetchUser } from '../actions/userActions'
 
 const initialState: UserType = {
   data: {
-    login: '',
-    pass: '',
+    email: '',
+    name: '',
+    phoneNumber: '',
+    isTwoFactorEnabled: false,
   },
   userFetchStart: false,
   userFetchFinished: false,

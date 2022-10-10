@@ -2,13 +2,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import apiRequestService from '../../services/apiRequestService'
 import setApiHeaders from '../../helpers/setApiHeaders'
-import { UserDataType } from '../../types/userTypes'
 import { TOKENS_FETCHING } from './actionTypes'
+
+import { apiLoginPath } from '../../utils/apiPaths'
 
 // tokens fetching
 export const fetchTokens = createAsyncThunk(
   TOKENS_FETCHING,
-  async (data: UserDataType | null, { rejectWithValue }) => {
+  async (data: { email: string, password: string } | null, { rejectWithValue }) => {
     try {
       if (!data) {
         const tokens = window.localStorage.getItem('tokens') && JSON.parse(window.localStorage.getItem('tokens')!)
@@ -17,14 +18,16 @@ export const fetchTokens = createAsyncThunk(
 
         if (tokens) return { ...tokens }
       } else {
-        const todo = await apiRequestService('get', 'https://jsonplaceholder.typicode.com/todos/1')
+        const result = await apiRequestService('post', apiLoginPath, { ...data, deviceId: false })
     
-        if (todo) {
-          window.localStorage.setItem('tokens', JSON.stringify({ accessToken: 'access', refreshToken: 'refresh' }))
+        if (result) {
+          const { accessToken, refreshToken } = result
 
-          setApiHeaders('accessToken')
+          window.localStorage.setItem('tokens', JSON.stringify({ accessToken, refreshToken }))
+
+          setApiHeaders(accessToken)
   
-          return { accessToken: 'access', refreshToken: 'refresh' }
+          return { accessToken, refreshToken }
         }
       }
     } catch (err) {

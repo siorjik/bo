@@ -1,6 +1,8 @@
 export type UserDataType = {
-  login: string,
-  pass: string,
+  email: string,
+  name: string,
+  phoneNumber: string,
+  isTwoFactorEnabled: boolean,
 }
 
 export type UserType = {

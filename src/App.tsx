@@ -18,13 +18,11 @@ import { setStartLoader, setStopLoader } from './store/actions/loaderActions'
 import { UserDataType } from './types/userTypes'
 import { PermissionDataType } from './types/permissionTypes'
 
-export const MainContext = createContext(
-  {
-    user: { login: '', pass: '' } as UserDataType,
-    userPermissionList: [] as PermissionDataType[],
-    isMobileView: false
-  }
-)
+export const MainContext = createContext({
+  user: { email: '' } as UserDataType,
+  userPermissionList: [] as PermissionDataType[],
+  isMobileView: false
+})
 
 const App = () => {
   const [open, setOpen] = useState<boolean>(false)

@@ -3,6 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import apiRequestService from '../../services/apiRequestService'
 import { PERMISSION_LIST_FETCHING, USER_PERMISSION_LIST_FETCHING } from './actionTypes'
 
+import { apiUserPermissionsPath } from '../../utils/apiPaths'
+
 import { permissionList } from '../../mocks/roles'
 
 export const fetchPermissiionList = createAsyncThunk(
@@ -22,9 +24,9 @@ export const fetchUserPermissiionList = createAsyncThunk(
   USER_PERMISSION_LIST_FETCHING,
   async (_, { rejectWithValue }) => {
     try {
-      const todo = await apiRequestService('get', 'https://jsonplaceholder.typicode.com/todos/1')
+      const result = await apiRequestService('get', apiUserPermissionsPath)
   
-      if (todo) return [
+      /*if (result) return [
         { key: 'SuperUser' },
         { key: 'Bug_Reports_Access' },
         { key: 'Agents_Access' },
@@ -37,7 +39,9 @@ export const fetchUserPermissiionList = createAsyncThunk(
         { key: 'Promo_Code_Manager' },
         { key: 'Credit_Wallet_Reserve_Treasury_Reconciliation' },
         { key: 'Currency_Cloud_Rate_Access' },
-      ]
+      ]*/
+
+      if (result) return result
     } catch (err) {
       return rejectWithValue(err)
     }
