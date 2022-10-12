@@ -1,21 +1,53 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, ChangeEvent } from "react"
 import { Button, Alert, TextField } from "@mui/material"
 import QRCode from 'react-qr-code'
 
-export default ({ tabName }: { tabName: string | JSX.Element }) => {
+export default (
+  { tabName, authenticator, confirmTwoFa, recoveryCode, error, resetAuthKey, resetErr }:
+  {
+    tabName: string | JSX.Element,
+    authenticator: { sharedKey: string, authenticatorUri: string },
+    confirmTwoFa: (code: string) => void,
+    recoveryCode: { codeList: string[], setRecoveryCodes: (codes: []) => {} },
+    error: string,
+    resetAuthKey: () => {},
+    resetErr: () => {}
+  }
+) => {
   const [isShowTwoFaSettings, setShowTwoFaSettings] = useState<{ configure: boolean, reset: boolean }>({
     configure: false,
     reset: false,
   })
+  const [twoFaData, setTwoFaData] = useState<{ code: string, recoveryCodes: string[] }>({ code: '', recoveryCodes: [] })
+
+  const { codeList, setRecoveryCodes } = recoveryCode
 
   useEffect(() => {
     const { configure, reset } = isShowTwoFaSettings
 
-    if (
-      (tabName !== 'twoFa') && (configure || reset)) {
-        setShowTwoFaSettings({ configure: false, reset: false })
-      }
-  }, [tabName])
+    if ((tabName !== 'twoFa') && (configure || reset)) {
+      setShowTwoFaSettings({ configure: false, reset: false })
+    }
+
+    if (twoFaData.code) setTwoFaData({ ...twoFaData, code: '' })
+
+    if (codeList && codeList.length) setRecoveryCodes([])
+    if (error) resetErr()
+  }, [tabName, isShowTwoFaSettings])
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target
+
+    if (value.length > 6) return false
+
+    setTwoFaData({ ...twoFaData, code: value })
+  }
+
+  const resetTwoFa = () => {
+    resetAuthKey()
+
+    setShowTwoFaSettings({ configure: true, reset: false })
+  }
 
   return (
     <>
@@ -52,7 +84,7 @@ export default ({ tabName }: { tabName: string | JSX.Element }) => {
             <p className="flex">
               <span>2.</span>&nbsp;
               <span>Scan the QR Code or enter this key &nbsp;
-                <span className="background-black color-white p-3">yl5q lwrm enbo 5vif m2uv pcfj jtdt majl</span>&nbsp;
+                <span className="background-black color-white p-3">{authenticator.sharedKey}</span>&nbsp;
                 into your two factor authenticator app. Spaces and casing do not matter.</span>
             </p>
             <Alert severity="info">
@@ -60,17 +92,23 @@ export default ({ tabName }: { tabName: string | JSX.Element }) => {
               <a href='https://go.microsoft.com/fwlink/?Linkid=852423' target='_blank' rel="noreferrer">documentation</a>.
             </Alert>
             <div className="mt-30">
-              <QRCode size={150} value="any" />
+              <QRCode size={150} value={authenticator.authenticatorUri} />
             </div>
             <p className="flex">
               <span>3.</span>&nbsp;
               <span>Once you have scanned the QR code or input the key above,your two factor authentication&nbsp;
                 app will provide you with a unique code. Enter the code in the confirmation box below.</span>
             </p>
-            <TextField className="mt-10" label="Verification code" />
-            <div className="mt-30">
-              <Button variant="contained">Verify</Button>
-            </div>
+            <TextField className="mt-10" type='number' label="Verification code" onChange={onChange} value={twoFaData.code} />
+            {error && <p className="err-mess">{error}</p>}
+            {((codeList && !codeList.length) || !codeList) && <div className="mt-30">
+              <Button variant="contained" onClick={() => confirmTwoFa(twoFaData.code)}>Verify</Button>
+            </div>}
+
+            {codeList && !!codeList.length && <Alert className="mt-30" severity="warning">
+              <h3>Save this codes for recovery:</h3>
+              {codeList.map((item, index) => <p key={index}>{item}</p>)}
+            </Alert>}
           </div>
         </>
       }
@@ -90,7 +128,7 @@ export default ({ tabName }: { tabName: string | JSX.Element }) => {
               If you do not complete your authenticator app configuration you may lose access to your account.
             </p>
           </Alert>
-          <Button className="mt-20" variant="contained" color="warning">Reset authenticator key</Button>
+          <Button className="mt-20" variant="contained" color="warning" onClick={resetTwoFa}>Reset authenticator key</Button>
         </>
       }
     </>

@@ -2,16 +2,19 @@ import { ChangeEvent, FormEvent, useState, useEffect } from "react"
 import { Input, Button, Alert } from "@mui/material"
 
 import TwoFaAuthContent from "./TwoFaAuthContent"
-
 import Tabs from "../../components/Tabs"
 import BreadCrumbs from "../../components/BreadCrumbs"
 
+import { useAppDispatch, useAppSelector } from "../../store"
+import { confirmAuthenticator, disableAuthenticator, fetchAuthenticator, resetError } from "../../store/actions/authActions"
+
 import emailValidation from '../../helpers/emailValidation'
+import getActionValue from '../../helpers/getActionValue'
 
 type ProfileType = {
-  username: string,
+  name: string,
   email: string,
-  phone: string,
+  phoneNumber: string,
   oldPass: string,
   newPass: string,
   confPass: string,
@@ -19,9 +22,9 @@ type ProfileType = {
 
 const Profile = () => {
   const [profileData, setProfileData] = useState<ProfileType>({
-    username: '',
+    name: '',
     email: '',
-    phone: '',
+    phoneNumber: '',
     oldPass: '',
     newPass: '',
     confPass: ''
@@ -29,6 +32,18 @@ const Profile = () => {
   const [err, setErr] = useState<{ email: boolean, pass: boolean }>({ email: false, pass: false })
   const [isShowAlert, setShowAlert] = useState(false)
   const [tabName, setTabName] = useState<string | JSX.Element>('')
+  const [recoveryCodes, setRecoveryCodes] = useState<string[]>([])
+
+  const dispatch = useAppDispatch()
+  const { auth: { authenticator, error }, user: { data } } = useAppSelector(state => state)
+
+  useEffect(() => {
+    if (!authenticator.sharedKey) dispatch(fetchAuthenticator())
+  }, [])
+
+  useEffect(() => {
+    setProfileData({ ...profileData, name: data.name, email: data.email, phoneNumber: data.phoneNumber || '' })
+  }, [data.email, data.name, data.phoneNumber])
 
   useEffect(() => {
     if (profileData.confPass !== profileData.newPass && profileData.confPass && profileData.newPass) {
@@ -53,22 +68,27 @@ const Profile = () => {
     e.preventDefault()
 
     setShowAlert(true)
-
     setTimeout(() => setShowAlert(false), 1500)
   }
 
-  const { username, email, phone, oldPass, newPass, confPass } = profileData
+  const confirmTwoFa = async (code: string) => {
+    const result = await getActionValue(() => dispatch(confirmAuthenticator({ code })), 'recoveryCodes')
 
-  const isDisabledProfile = !username || !email
+    setRecoveryCodes(result)
+  }
+
+  const { name, email, phoneNumber, oldPass, newPass, confPass } = profileData
+
+  const isDisabledProfile = !name || !email
   const isDisabledPassword = !oldPass || !newPass || !confPass || newPass !== confPass
 
   const profileForm = (
     <>
       <h3 className="mb-30">Edit Profile</h3>
       <form className="profile-form" onSubmit={profileSubmit}>
-        <Input className="mb-20" name='username' placeholder="User name" onChange={onChange} value={username} />
+        <Input className="mb-20" name='name' placeholder="User name" onChange={onChange} value={name} />
         <Input className="mb-20" name='email' placeholder="Email" onChange={onChange} value={email} error={err.email} />
-        <Input className="mb-30" name='phone' placeholder="Phone" type="number" onChange={onChange} value={phone} />
+        <Input className="mb-30" name='phone' placeholder="Phone" type="number" onChange={onChange} value={phoneNumber} />
         <Button className="w-50" variant="contained" type="submit" disabled={isDisabledProfile || err.email}>Save</Button>
       </form>
     </>
@@ -89,7 +109,7 @@ const Profile = () => {
         <Input className="mb-20" type="password" name='newPass' placeholder="New Password" onChange={onChange} value={newPass} />
         <div className="mb-30">
           <Input
-            className="w-100-percent"
+            fullWidth
             type="password"
             name='confPass'
             placeholder="Confirm Password"
@@ -107,7 +127,21 @@ const Profile = () => {
   const tabsData = [
     { name: 'profile', title: 'Profile', content: profileForm },
     { name: 'password', title: 'Password', content: passwordForm },
-    { name: 'twoFa', title: <span>Two-factor <br />authentication</span>, content: <TwoFaAuthContent tabName={tabName} /> },
+    {
+      name: 'twoFa',
+      title: <span>Two-factor <br />authentication</span>,
+      content: (
+        <TwoFaAuthContent
+          tabName={tabName}
+          authenticator={authenticator}
+          confirmTwoFa={confirmTwoFa}
+          recoveryCode={{ codeList: recoveryCodes, setRecoveryCodes: async (codes: []) => setRecoveryCodes(codes) }}
+          error={error}
+          resetAuthKey={() => dispatch(disableAuthenticator())}
+          resetErr={() => dispatch(resetError())}
+        />
+      )
+    },
   ]
 
   const breadCrumbsData = [

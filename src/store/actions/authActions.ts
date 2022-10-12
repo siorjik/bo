@@ -1,12 +1,28 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 
 import apiRequestService from '../../services/apiRequestService'
 import setApiHeaders from '../../helpers/setApiHeaders'
-import { TOKENS_FETCHING } from './actionTypes'
+import {
+  TOKENS_FETCHING,
+  AUTHENTICATOR_FETCHING,
+  AUTHENTICATOR_CONFIRM,
+  AUTHENTICATOR_DISABLE,
+  RESET_ERROR
+} from './actionTypes'
 
-import { apiLoginPath } from '../../utils/apiPaths'
+import {
+  apiAuthenticatorConfirmPath,
+  apiAuthenticatorDisablePath,
+  apiAuthenticatorPath,
+  apiLoginPath
+} from '../../utils/apiPaths'
 
-// tokens fetching
+type ErrType = {
+  response: { data: { message: string } }
+}
+
+export const resetError = createAction(RESET_ERROR)
+
 export const fetchTokens = createAsyncThunk(
   TOKENS_FETCHING,
   async (data: { email: string, password: string } | null, { rejectWithValue }) => {
@@ -30,8 +46,55 @@ export const fetchTokens = createAsyncThunk(
           return { accessToken, refreshToken }
         }
       }
-    } catch (err) {
-      return rejectWithValue(err)
+    } catch (error) {
+      const err = error as ErrType
+
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+)
+
+export const fetchAuthenticator = createAsyncThunk(
+  AUTHENTICATOR_FETCHING,
+  async (_, { rejectWithValue }) => {
+    try {
+      const result = await apiRequestService('get', apiAuthenticatorPath)
+
+      if (result) return result
+    } catch (error) {
+      const err = error as ErrType
+
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+)
+
+export const confirmAuthenticator = createAsyncThunk(
+  AUTHENTICATOR_CONFIRM,
+  async (data: { code: string }, { rejectWithValue }) => {
+    try {
+      const result = await apiRequestService('post', apiAuthenticatorConfirmPath, data)
+
+      if (result) return result
+    } catch (error) {
+      const err = error as ErrType
+
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+)
+
+export const disableAuthenticator = createAsyncThunk(
+  AUTHENTICATOR_DISABLE,
+  async (_, { rejectWithValue }) => {
+    try {
+      const result = await apiRequestService('post', apiAuthenticatorDisablePath)
+
+      if (result) return result
+    } catch (error) {
+      const err = error as ErrType
+
+      return rejectWithValue(err.response.data.message)
     }
   }
 )
