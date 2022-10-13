@@ -1,16 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import apiRequestService from '../../services/apiRequestService'
 import { USER_FETCHING } from './actionTypes'
 
 import { apiPath } from '../../utils/apiPaths'
+import apiRequestServiceWithRefresh from '../../services/apiRequestServiceWithRefresh'
 
-// user fetching
 export const fetchUser = createAsyncThunk(
   USER_FETCHING,
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
-      const result = await apiRequestService('get', apiPath!)
+      const result = await apiRequestServiceWithRefresh(dispatch, 'get', apiPath!)
   
       if (result) return result
     } catch (err) {

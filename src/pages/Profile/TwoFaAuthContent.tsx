@@ -2,6 +2,8 @@ import { useState, useEffect, ChangeEvent } from "react"
 import { Button, Alert, TextField } from "@mui/material"
 import QRCode from 'react-qr-code'
 
+import excludeSymbolsFromNumber from "../../helpers/excludeSymbolsFromNumber"
+
 export default (
   { tabName, authenticator, confirmTwoFa, recoveryCode, error, resetAuthKey, resetErr }:
   {
@@ -99,10 +101,19 @@ export default (
               <span>Once you have scanned the QR code or input the key above,your two factor authentication&nbsp;
                 app will provide you with a unique code. Enter the code in the confirmation box below.</span>
             </p>
-            <TextField className="mt-10" type='number' label="Verification code" onChange={onChange} value={twoFaData.code} />
+            <TextField
+              className="mt-10"
+              type='number'
+              label="Verification code"
+              onChange={onChange}
+              onKeyDown={excludeSymbolsFromNumber}
+              value={twoFaData.code}
+            />
             {error && <p className="err-mess">{error}</p>}
             {((codeList && !codeList.length) || !codeList) && <div className="mt-30">
-              <Button variant="contained" onClick={() => confirmTwoFa(twoFaData.code)}>Verify</Button>
+              <Button variant="contained" onClick={() => confirmTwoFa(twoFaData.code)} disabled={twoFaData.code.length < 6}>
+                Verify
+              </Button>
             </div>}
 
             {codeList && !!codeList.length && <Alert className="mt-30" severity="warning">

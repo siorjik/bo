@@ -33,7 +33,7 @@ const App = () => {
 
   const {
     display: { isMobileView },
-    auth: { tokens },
+    auth: { tokens, tokensRefreshStart, tokensRefreshFinished },
     user: { data },
     permission: { userPermissionList },
     loader: { isShowLoader }
@@ -58,7 +58,7 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      if (storageAccess) {
+      if (storageAccess && !tokensRefreshStart && !tokensRefreshFinished) {
         dispatch(setStartLoader())
 
         if (!tokens.accessToken) {

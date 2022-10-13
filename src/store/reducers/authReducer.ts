@@ -7,6 +7,7 @@ import {
   confirmAuthenticator,
   disableAuthenticator,
   resetError,
+  refreshTokens,
 } from '../actions/authActions'
 
 const initialState: AuthType = {
@@ -16,6 +17,8 @@ const initialState: AuthType = {
   },
   tokensFetchStart: false,
   tokensFetchFinished: false,
+  tokensRefreshStart: false,
+  tokensRefreshFinished: false,
   authenticator: {
     sharedKey: '',
     authenticatorUri: '',
@@ -45,6 +48,20 @@ const auth = createSlice({
     },
     [fetchTokens.rejected.type]: (state, action: PayloadAction<string>) => {
       state.tokensFetchStart = false
+      state.error = action.payload
+    },
+
+    [refreshTokens.pending.type]: (state) => {
+      state.tokensRefreshStart = true
+      state.error = ''
+    },
+    [refreshTokens.fulfilled.type]: (state, action: PayloadAction<{ accessToken: string, refreshToken: string }>) => {
+      state.tokensRefreshFinished = true
+      state.tokensRefreshStart = false
+      state.tokens = action.payload
+    },
+    [refreshTokens.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.tokensRefreshStart = false
       state.error = action.payload
     },
 

@@ -88,7 +88,7 @@ const Profile = () => {
       <form className="profile-form" onSubmit={profileSubmit}>
         <Input className="mb-20" name='name' placeholder="User name" onChange={onChange} value={name} />
         <Input className="mb-20" name='email' placeholder="Email" onChange={onChange} value={email} error={err.email} />
-        <Input className="mb-30" name='phone' placeholder="Phone" type="number" onChange={onChange} value={phoneNumber} />
+        <Input className="mb-30" name='phoneNumber' placeholder="Phone" type="number" onChange={onChange} value={phoneNumber} />
         <Button className="w-50" variant="contained" type="submit" disabled={isDisabledProfile || err.email}>Save</Button>
       </form>
     </>

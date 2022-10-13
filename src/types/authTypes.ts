@@ -6,6 +6,8 @@ export type AuthType = {
   },
   tokensFetchStart: boolean,
   tokensFetchFinished: boolean,
+  tokensRefreshStart: boolean,
+  tokensRefreshFinished: boolean,
   authenticator: {
     sharedKey: string,
     authenticatorUri: string,

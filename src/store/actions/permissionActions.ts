@@ -6,6 +6,7 @@ import { PERMISSION_LIST_FETCHING, USER_PERMISSION_LIST_FETCHING } from './actio
 import { apiUserPermissionsPath } from '../../utils/apiPaths'
 
 import { permissionList } from '../../mocks/roles'
+import apiRequestServiceWithRefresh from '../../services/apiRequestServiceWithRefresh'
 
 export const fetchPermissiionList = createAsyncThunk(
   PERMISSION_LIST_FETCHING,
@@ -22,9 +23,9 @@ export const fetchPermissiionList = createAsyncThunk(
 
 export const fetchUserPermissiionList = createAsyncThunk(
   USER_PERMISSION_LIST_FETCHING,
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
-      const result = await apiRequestService('get', apiUserPermissionsPath)
+      const result = await apiRequestServiceWithRefresh(dispatch, 'get', apiUserPermissionsPath)
   
       /*if (result) return [
         { key: 'SuperUser' },
