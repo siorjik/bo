@@ -44,6 +44,19 @@ import {
   currencyCloudOTRatesPath,
   currencyCloudTopUpRatesPath,
   currencyCloudAllRatesPath,
+  feedbacksAccessPath,
+  masterNodeAllMasterNodesPath,
+  masterNodeRewardsPath,
+  outboundTransfersCountriesPath,
+  outboundTransfersFeesPath,
+  outboundTransfersRiskScoresPath,
+  cashoutPendingRequestsPath,
+  cashoutCompletedRequestsPath,
+  cashoutPendingKWLRequestsPath,
+  cashoutCompletedKWLRequestsPath,
+  cashoutPendingMulticashRequestsPath,
+  cashoutCompletedMulticashRequestsPath,
+  outboundTransfersTransfersPath,
 } from '../../utils/appPaths'
 import { collapseItems, menuItems } from '../../utils/constants'
 import getOpenedCollapse from './getOpenedCollapse'
@@ -53,10 +66,21 @@ type CollapseMenuType = {
   topUp: boolean,
   kuvaLocal: boolean,
   currencyCloud: boolean,
+  masterNode: boolean,
+  outboundTransfers: boolean,
+  cashout: boolean,
 }
 
 export default ({ isMobileView }: { isMobileView?: boolean }) => {
-  const [open, setOpen] = useState<CollapseMenuType>({ kwl: false, topUp: false, kuvaLocal: false, currencyCloud: false })
+  const [open, setOpen] = useState<CollapseMenuType>({
+    kwl: false,
+    topUp: false,
+    kuvaLocal: false,
+    currencyCloud: false,
+    masterNode: false,
+    outboundTransfers: false,
+    cashout: false,
+  })
   const [menuOpen, setMenuOpen] = useState(true)
 
   const { userPermissionList } = useContext(MainContext)
@@ -212,6 +236,69 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
                 <NavLink className='item-link' to={currencyCloudOTRatesPath}>Rates for OT</NavLink>
                 <NavLink className='item-link' to={currencyCloudTopUpRatesPath}>Rates for Top Up</NavLink>
                 <NavLink className='item-link' to={currencyCloudAllRatesPath}>All Rates</NavLink>
+              </Collapse>
+            </div>
+          </MenuItem>}
+
+          {isPermission(menuItems.FEEDBACKS_ACCESS) && <MenuItem>
+            <div className="item">
+              <h4><NavLink className='item-link' to={feedbacksAccessPath}>Feedbacks</NavLink></h4>
+            </div>
+          </MenuItem>}
+
+          {isPermission(collapseItems.MASTER_NODE) && <MenuItem onClick={(e) => onClick(e, collapseItems.MASTER_NODE)}>
+            <div className="item">
+              <Collapse component="div" in={open.masterNode} collapsedSize='35px' className='collapse'>
+                <h4>
+                  Master Node
+                  {
+                    open.masterNode ?
+                      <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
+                  }
+                </h4>
+                <NavLink className='item-link' to={masterNodeAllMasterNodesPath}>All Master Nodes</NavLink>
+                <NavLink className='item-link' to={masterNodeRewardsPath}>Rewards</NavLink>
+              </Collapse>
+            </div>
+          </MenuItem>}
+
+          {
+            isPermission(collapseItems.OUTBOUND_TRANSFERS) &&
+              <MenuItem onClick={(e) => onClick(e, collapseItems.OUTBOUND_TRANSFERS)}>
+                <div className="item">
+                  <Collapse component="div" in={open.outboundTransfers} collapsedSize='35px' className='collapse'>
+                    <h4>
+                      Outbound Transfers
+                      {
+                        open.outboundTransfers ?
+                          <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
+                      }
+                    </h4>
+                    <NavLink className='item-link' to={outboundTransfersTransfersPath}>Transfers</NavLink>
+                    <NavLink className='item-link' to={outboundTransfersCountriesPath}>Countries</NavLink>
+                    <NavLink className='item-link' to={outboundTransfersFeesPath}>Fees</NavLink>
+                    <NavLink className='item-link' to={outboundTransfersRiskScoresPath}>Risk scores</NavLink>
+                  </Collapse>
+                </div>
+              </MenuItem>
+          }
+
+          {isPermission(collapseItems.CASHOUT) && <MenuItem onClick={(e) => onClick(e, collapseItems.CASHOUT)}>
+            <div className="item">
+              <Collapse component="div" in={open.cashout} collapsedSize='35px' className='collapse'>
+                <h4>
+                  Cashout
+                  {
+                    open.cashout ?
+                      <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
+                  }
+                </h4>
+                <NavLink className='item-link' to={cashoutPendingRequestsPath}>Pending Requests</NavLink>
+                <NavLink className='item-link' to={cashoutCompletedRequestsPath}>Completed Request</NavLink>
+                <NavLink className='item-link' to={cashoutPendingKWLRequestsPath}>Pending KWL Requests</NavLink>
+                <NavLink className='item-link' to={cashoutCompletedKWLRequestsPath}>Completed KWL Requests</NavLink>
+                <NavLink className='item-link' to={cashoutPendingMulticashRequestsPath}>Pending Multicash Requests</NavLink>
+                <NavLink className='item-link' to={cashoutCompletedMulticashRequestsPath}>Completed Multicash Requests</NavLink>
               </Collapse>
             </div>
           </MenuItem>}

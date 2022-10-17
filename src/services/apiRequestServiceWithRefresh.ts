@@ -25,9 +25,7 @@ export default async (
       JSON.parse(window.localStorage.getItem('tokens')!).refreshToken
 
     if (error.response.status === 401 && storageRefresh) {
-      dispatch(refreshTokens(storageRefresh))
-
-      return await apiRequestService(method, url, data)
+      return Promise.resolve(dispatch(refreshTokens(storageRefresh))).then(() => apiRequestService(method, url, data))
     } else throw err
   }
 }

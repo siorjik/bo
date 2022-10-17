@@ -42,6 +42,22 @@ import {
   currencyCloudOTRatesPath,
   currencyCloudTopUpRatesPath,
   currencyCloudAllRatesPath,
+  feedbacksAccessPath,
+  masterNodePath,
+  masterNodeAllMasterNodesPath,
+  masterNodeRewardsPath,
+  outboundTransfersPath,
+  outboundTransfersTransfersPath,
+  outboundTransfersCountriesPath,
+  outboundTransfersFeesPath,
+  outboundTransfersRiskScoresPath,
+  cashoutPath,
+  cashoutPendingRequestsPath,
+  cashoutCompletedRequestsPath,
+  cashoutPendingKWLRequestsPath,
+  cashoutCompletedKWLRequestsPath,
+  cashoutPendingMulticashRequestsPath,
+  cashoutCompletedMulticashRequestsPath,
 } from '../../utils/appPaths'
 
 import KuvaWhiteLabel from '../../pages/KuvaWhiteLabel'
@@ -81,6 +97,22 @@ import KLRates from "../../pages/CurrencyCloud/KLRates"
 import OTRates from "../../pages/CurrencyCloud/OTRates"
 import TopUpRates from "../../pages/CurrencyCloud/TopUpRates"
 import AllRates from "../../pages/CurrencyCloud/AllRates"
+import Feedbacks from "../../pages/Feedbacks"
+import MasterNode from "../../pages/MasterNode"
+import AllMasterNodes from "../../pages/MasterNode/AllMasterNodes"
+import Rewards from "../../pages/MasterNode/Rewards"
+import OutboundTransfers from "../../pages/OutboundTransfers"
+import Transfers from "../../pages/OutboundTransfers/Transfers"
+import OutboundTransfersCountries from "../../pages/OutboundTransfers/Countries"
+import Fees from "../../pages/OutboundTransfers/Fees"
+import RiskScores from "../../pages/OutboundTransfers/RiskScores"
+import Cashout from "../../pages/Cashout"
+import PendingRequests from "../../pages/Cashout/PendingRequests"
+import CompletedRequests from "../../pages/Cashout/CompletedRequests"
+import CompletedKWLRequests from "../../pages/Cashout/CompletedKWLRequests"
+import PendingKWLRequests from "../../pages/Cashout/PendingKWLRequests"
+import PendingMulticashRequests from "../../pages/Cashout/PendingMuticashRequests"
+import CompletedMulticashRequests from "../../pages/Cashout/CompletedMultiCashRequests"
 
 export default (userPermissionList: PermissionDataType[]) => {
   const permissions = getMapedPermissionList(userPermissionList)
@@ -193,6 +225,51 @@ export default (userPermissionList: PermissionDataType[]) => {
             <Route path={currencyCloudTopUpRatesPath} element={<TopUpRates />} />
             <Route path={currencyCloudAllRatesPath} element={<AllRates />} />
           </Route>
+        </Fragment>
+      ]
+    } else if (item.key === permissions.Feedbacks_Access) {
+      showRoutesList = [...showRoutesList,
+        <Fragment key={permissions.Feedbacks_Access}>
+          <Route path='/' element={<Navigate replace to={feedbacksAccessPath} />} />
+          <Route path={feedbacksAccessPath} element={<Feedbacks />} />
+        </Fragment>
+      ]
+    } else if (item.key === permissions.Masternodes_Access) {
+      showRoutesList = [...showRoutesList,
+        <Fragment key={permissions.Masternodes_Access}>
+          <Route path='/' element={<Navigate replace to={masterNodePath} />} />
+          <Route path={masterNodePath} element={<Navigate replace to={masterNodeAllMasterNodesPath} />} />
+          <Route path={masterNodePath} element={<MasterNode />} >
+            <Route path={masterNodeAllMasterNodesPath} element={<AllMasterNodes />} />
+            <Route path={masterNodeRewardsPath} element={<Rewards />} />
+          </Route>
+        </Fragment>
+      ]
+    } else if (item.key === permissions.Outbound_Transfers_Access) {
+      showRoutesList = [...showRoutesList,
+        <Fragment key={permissions.Outbound_Transfers_Access}>
+          <Fragment>
+            <Route path='/' element={<Navigate replace to={outboundTransfersPath} />} />
+            <Route path={outboundTransfersPath} element={<Navigate replace to={outboundTransfersTransfersPath} />} />
+            <Route path={outboundTransfersPath} element={<OutboundTransfers />} >
+              <Route path={outboundTransfersTransfersPath} element={<Transfers />} />
+              <Route path={outboundTransfersCountriesPath} element={<OutboundTransfersCountries />} />
+              <Route path={outboundTransfersFeesPath} element={<Fees />} />
+              <Route path={outboundTransfersRiskScoresPath} element={<RiskScores />} />
+            </Route>
+          </Fragment>
+          <Fragment>
+            <Route path='/' element={<Navigate replace to={cashoutPath} />} />
+            <Route path={cashoutPath} element={<Navigate replace to={cashoutPendingRequestsPath} />} />
+            <Route path={cashoutPath} element={<Cashout />} >
+              <Route path={cashoutPendingRequestsPath} element={<PendingRequests />} />
+              <Route path={cashoutCompletedRequestsPath} element={<CompletedRequests />} />
+              <Route path={cashoutPendingKWLRequestsPath} element={<PendingKWLRequests />} />
+              <Route path={cashoutCompletedKWLRequestsPath} element={<CompletedKWLRequests />} />
+              <Route path={cashoutPendingMulticashRequestsPath} element={<PendingMulticashRequests />} />
+              <Route path={cashoutCompletedMulticashRequestsPath} element={<CompletedMulticashRequests />} />
+            </Route>
+          </Fragment>
         </Fragment>
       ]
     }

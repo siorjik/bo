@@ -2,7 +2,10 @@ export const collapseItems = {
   KWL: 'kwl',
   TOP_UP: 'topUp',
   KUVA_LOCAL: 'kuvaLocal',
-  CURRENCY_CLOUD: 'currencyCloud'
+  CURRENCY_CLOUD: 'currencyCloud',
+  MASTER_NODE: 'masterNode',
+  OUTBOUND_TRANSFERS: 'outboundTransfers',
+  CASHOUT: 'cashout',
 }
 
 export const menuItems = {
@@ -15,4 +18,5 @@ export const menuItems = {
   CREDIT_WALLET_TREASURE: 'creditWalletTreasure',
   CREDIT_VENDOR: 'creditVendor',
   PROMO_CODE_MANAGER: 'promoCodeManager',
+  FEEDBACKS_ACCESS: 'feedbacksAccess',
 }

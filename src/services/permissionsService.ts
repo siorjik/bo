@@ -38,6 +38,12 @@ export const getSidebarPermissions = (userPermissionList: PermissionDataType[], 
       showItemList = [...showItemList, menuItems.CREDIT_WALLET_TREASURE]
     } else if (item.key === permissions.Currency_Cloud_Rate_Access) {
       showItemList = [...showItemList, collapseItems.CURRENCY_CLOUD]
+    } else if (item.key === permissions.Feedbacks_Access) {
+      showItemList = [...showItemList, menuItems.FEEDBACKS_ACCESS]
+    } else if (item.key === permissions.Masternodes_Access) {
+      showItemList = [...showItemList, collapseItems.MASTER_NODE]
+    } else if (item.key === permissions.Outbound_Transfers_Access) {
+      showItemList = [...showItemList, collapseItems.OUTBOUND_TRANSFERS, collapseItems.CASHOUT]
     }
   })
 

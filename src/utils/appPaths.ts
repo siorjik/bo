@@ -35,6 +35,24 @@ export const currencyCloudOTRatesPath = `${currencyCloudPath}/ot-rates`
 export const currencyCloudTopUpRatesPath = `${currencyCloudPath}/top-up-rates`
 export const currencyCloudAllRatesPath = `${currencyCloudPath}/all-rates`
 
+export const masterNodePath = '/master-node'
+export const masterNodeAllMasterNodesPath = `${masterNodePath}/all-master-nodes`
+export const masterNodeRewardsPath = `${masterNodePath}/rewards`
+
+export const outboundTransfersPath = '/outbound-transafers'
+export const outboundTransfersTransfersPath = `${outboundTransfersPath}/transfers`
+export const outboundTransfersCountriesPath = `${outboundTransfersPath}/countries`
+export const outboundTransfersFeesPath = `${outboundTransfersPath}/fees`
+export const outboundTransfersRiskScoresPath = `${outboundTransfersPath}/risk-scores`
+
+export const cashoutPath = '/cashout'
+export const cashoutPendingRequestsPath = `${cashoutPath}/pending-requests`
+export const cashoutCompletedRequestsPath = `${cashoutPath}/completed-requests`
+export const cashoutPendingKWLRequestsPath = `${cashoutPath}/pending-kwl-requests`
+export const cashoutCompletedKWLRequestsPath = `${cashoutPath}/completed-kwl-requests`
+export const cashoutPendingMulticashRequestsPath = `${cashoutPath}/pending-multicash-requests`
+export const cashoutCompletedMulticashRequestsPath = `${cashoutPath}/completed-multicash-requests`
+
 export const mobileUsersPath = '/mobile-users'
 export const agentsProfilesPath = '/agents-profiles'
 export const agentGroupsPath = '/agent-groups'
@@ -42,4 +60,5 @@ export const bugReportPath = '/bug-report'
 export const pageNotFoundPath = '/page-not-found'
 export const contactPath = '/contact'
 export const creditWalletTreasurePath = '/credit-wallet-treasure'
+export const feedbacksAccessPath = '/feedbacks'
 export const profilePath = '/profile'

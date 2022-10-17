@@ -34,7 +34,7 @@ class ErrorBoundary extends Component<{ children: JSX.Element }, StateType> {
   getErrorTemplate = () => (
     <Container maxWidth='sm'>
       <div className="flex align-items-center j-content-center flex-dir-column h-100-vh">
-        <h2>ooops, something broke :(</h2>
+        <h2 className="mb-30">ooops, something broke :(</h2>
         <div className="flex">
           <h3 className="white-space-no">error message:</h3> &nbsp; <h3 className="err-mess">{this.state.message}</h3>
         </div>

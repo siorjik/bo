@@ -8,7 +8,7 @@ const PageNotFound = () => {
     <>
       <Container maxWidth='sm'>
         <div className="flex align-items-center j-content-center flex-dir-column text-center h-100-vh">
-          <h2>Page not found :(</h2>
+          <h2 className="mb-30">Page not found :(</h2>
           <Button className="w-100" variant="outlined" onClick={() => goBack()}>Go back</Button>
         </div>
       </Container>

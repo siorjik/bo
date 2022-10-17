@@ -27,7 +27,7 @@ export const fetchUserPermissiionList = createAsyncThunk(
     try {
       const result = await apiRequestServiceWithRefresh(dispatch, 'get', apiUserPermissionsPath)
   
-      /*if (result) return [
+      /*return [
         { key: 'SuperUser' },
         { key: 'Bug_Reports_Access' },
         { key: 'Agents_Access' },
@@ -40,6 +40,9 @@ export const fetchUserPermissiionList = createAsyncThunk(
         { key: 'Promo_Code_Manager' },
         { key: 'Credit_Wallet_Reserve_Treasury_Reconciliation' },
         { key: 'Currency_Cloud_Rate_Access' },
+        { key: 'Feedbacks_Access' },
+        { key: 'Masternodes_Access' },
+        { key: 'Outbound_Transfers_Access' }
       ]*/
 
       if (result) return result
