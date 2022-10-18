@@ -1,11 +1,17 @@
-export const apiPath = process.env.REACT_APP_API_PATH
+export const accountsApiPath = process.env.REACT_APP_ACCOUNTS_API_PATH
+export const backOfficeApiPath = process.env.REACT_APP_BACK_OFFICE_API_PATH
 
-export const apiLoginPath = `${apiPath}/login`
-export const apiLogOutPath = `${apiPath}/logout`
-export const getApiRefreshTokensPath = (token: string) => `${apiPath}/tokens/${token}/refresh`
+// auth
+export const apiLoginPath = `${accountsApiPath}/login`
+export const apiLogOutPath = `${accountsApiPath}/logout`
+export const getApiRefreshTokensPath = (token: string) => `${accountsApiPath}/tokens/${token}/refresh`
 
-export const apiUserPermissionsPath = `${apiPath}/permissions`
+export const apiUserPermissionsPath = `${accountsApiPath}/permissions`
 
-export const apiAuthenticatorPath = `${apiPath}/authenticator`
-export const apiAuthenticatorConfirmPath = `${apiPath}/authenticator/confirm`
-export const apiAuthenticatorDisablePath = `${apiPath}/authenticator/disable`
+// 2fa
+export const apiAuthenticatorPath = `${accountsApiPath}/authenticator`
+export const apiAuthenticatorConfirmPath = `${accountsApiPath}/authenticator/confirm`
+export const apiAuthenticatorDisablePath = `${accountsApiPath}/authenticator/disable`
+
+// kwl
+export const apiKWLSitesApiPath = `${backOfficeApiPath}/kwl`

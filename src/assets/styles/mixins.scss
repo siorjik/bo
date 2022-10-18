@@ -73,6 +73,10 @@
   .pb-#{$i} {
     padding-bottom: $i + px !important;
   }
+
+  .pt-#{$i} {
+    padding-top: $i + px !important;
+  }
 }
 
 .background {

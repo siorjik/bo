@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import { MainContext } from '../../App'
-import getMapedRouting from './getMapedRouting'
+import getMappedRouting from './getMappedRouting'
 
 import { loginPath, pageNotFoundPath, profilePath } from '../../utils/appPaths'
 
@@ -25,9 +25,9 @@ export default ({ isAuth }: RouterProps) => {
         isAuth ?
           <Routes>
             {
-              !!getMapedRouting(userPermissionList).length ?
+              !!getMappedRouting(userPermissionList).length ?
               <>
-                {getMapedRouting(userPermissionList)}
+                {getMappedRouting(userPermissionList)}
                 <Route path={profilePath} element={<Profile />} />
                 <Route path={loginPath} element={<Navigate replace to='/' />} />
                 <Route path={pageNotFoundPath} element={<PageNotFound />} />
