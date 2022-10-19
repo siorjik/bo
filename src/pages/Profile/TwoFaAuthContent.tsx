@@ -91,7 +91,11 @@ export default (
             </p>
             <Alert severity="info">
               To enable QR code generation please read our &nbsp;
-              <a href='https://go.microsoft.com/fwlink/?Linkid=852423' target='_blank' rel="noreferrer">documentation</a>.
+              <a
+                className="link-a"
+                href='https://go.microsoft.com/fwlink/?Linkid=852423'
+                target='_blank' rel="noreferrer"
+              >documentation</a>.
             </Alert>
             <div className="mt-30">
               <QRCode size={150} value={authenticator.authenticatorUri} />

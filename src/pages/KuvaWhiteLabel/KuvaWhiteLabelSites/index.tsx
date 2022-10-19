@@ -17,11 +17,11 @@ const KuvaWhiteLabelSites = () => {
   const domain = process.env.REACT_APP_BACK_OFFICE_DOMAIN
 
   const headData = ['id', 'Host Url', 'Is Default', 'Details']
-  const dataKeys = ['id', 'hostUrl', 'isDefault', 'button']
+  const dataKeys = ['id', 'hostUrl', 'isDefault', 'detailsBtn']
   const mappedData = list.map(item =>
     ({
       ...item,
-      button: (
+      detailsBtn: (
         <Button size="small" variant='contained' href={`${domain}/KuvaWhiteLabel/${item.id}`} target='_blank'>Details</Button>
       )
     })
@@ -29,14 +29,14 @@ const KuvaWhiteLabelSites = () => {
   
   return (
     <>
-      <Container className="pt-25" maxWidth='xl'>
+      <Container className="pt-25 pb-10 h-100-percent overflow-hidden" maxWidth='xl'>
         <h3 className="mb-25">Kuva White Label Sites</h3>
         <Button
           className="mb-20"
           variant="contained"
           href={`${domain}/KuvaWhiteLabel/Create`} target='_blank'
         >Create new</Button>
-        <Table bodyData={mappedData} headData={headData} dataKeys={dataKeys} />
+        <Table bodyData={mappedData} headData={headData} dataKeys={dataKeys} сontainerStyle='pb-100' />
       </Container>
     </>
   )

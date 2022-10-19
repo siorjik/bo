@@ -3,16 +3,18 @@ import { MenuRounded } from '@mui/icons-material'
 import ManageAccountsRoundedIcon from '@mui/icons-material/ManageAccountsRounded'
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded'
 
+import store from '../store'
+
 import logo from '../assets/images/logo.svg'
 import { loginPath, profilePath } from '../utils/appPaths'
 import { goTo } from '../helpers/history'
 
 import { apiLogOutPath } from '../utils/apiPaths'
-import apiRequestService from '../services/apiRequestService'
+import apiRequestServiceWithRefresh from '../services/apiRequestServiceWithRefresh'
 
 export default ({ menuToggle, isMobileView }: { menuToggle?: () => {}, isMobileView?: boolean }) => {
   const handleClick = async() => {
-    await apiRequestService('post', apiLogOutPath)
+    await apiRequestServiceWithRefresh(store.dispatch,'post', apiLogOutPath)
 
     window.localStorage.removeItem('tokens')
     window.location.href = loginPath

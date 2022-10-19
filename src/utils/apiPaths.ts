@@ -15,3 +15,4 @@ export const apiAuthenticatorDisablePath = `${accountsApiPath}/authenticator/dis
 
 // kwl
 export const apiKWLSitesApiPath = `${backOfficeApiPath}/kwl`
+export const apiKWLUsersApiPath = `${backOfficeApiPath}/kwl/users`

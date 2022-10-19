@@ -12,9 +12,24 @@ export type KWLSiteData = {
   agentGroupId: number,
 }
 
+export type KWLUserData = {
+  id: number,
+  createdDate: string,
+  name: string,
+  email: string,
+  phoneNumber: string,
+  kuvaWhiteLabelId: number,
+  kwlHostUrl: string,
+}
+
 export type KWLTypes = {
   site: {
     list: KWLSiteData[],
+    listFetchStart: boolean,
+    listFetchFinished: boolean,
+  },
+  user: {
+    list: KWLUserData[],
     listFetchStart: boolean,
     listFetchFinished: boolean,
   },

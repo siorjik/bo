@@ -67,7 +67,8 @@ const App = () => {
 
         await dispatch(fetchUser())
         await dispatch(fetchUserPermissiionList())
-        dispatch(setStopLoader())
+        
+        setTimeout(() => dispatch(setStopLoader()), 500)
       }
     })()
   }, [storageAccess])

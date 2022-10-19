@@ -23,3 +23,4 @@ export const SET_STOP_LOADER = 'SET_STOP_LOADER'
 
 // kwl
 export const FETCH_KWL_SITE_LIST = 'FETCH_KWL_SITE_LIST'
+export const FETCH_KWL_USER_LIST = 'FETCH_KWL_USER_LIST'

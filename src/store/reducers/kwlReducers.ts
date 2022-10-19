@@ -1,10 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { KWLTypes } from '../../types/kwlTypes'
-import { fetchKWLSiteList } from '../actions/kwlActions'
+import { fetchKWLSiteList, fetchKWLUserList } from '../actions/kwlActions'
 
 const initialState: KWLTypes = {
   site: {
+    list: [],
+    listFetchStart: false,
+    listFetchFinished: false,
+  },
+  user: {
     list: [],
     listFetchStart: false,
     listFetchFinished: false,
@@ -27,6 +32,18 @@ const kwl = createSlice({
         state.site.list = action.payload
       })
       .addCase(fetchKWLSiteList.rejected, (state, action) => {
+        state.error = action.payload!.message
+      })
+
+      .addCase(fetchKWLUserList.pending, (state) => {
+        state.user.listFetchStart = true
+      })
+      .addCase(fetchKWLUserList.fulfilled, (state, action) => {
+        state.user.listFetchFinished = true
+        state.user.listFetchStart = false
+        state.user.list = action.payload
+      })
+      .addCase(fetchKWLUserList.rejected, (state, action) => {
         state.error = action.payload!.message
       })
   },

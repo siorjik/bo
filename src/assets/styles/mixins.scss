@@ -46,6 +46,10 @@
     height: $i + vh !important;
   }
 
+  .h-#{$i}-percent {
+    height: $i * 1% !important;
+  }
+
   .w-#{$i}-percent {
     width: $i * 1% !important;
   }
@@ -88,5 +92,9 @@
 .overflow {
   &-auto {
     overflow: auto;
+  }
+
+  &-hidden {
+    overflow: hidden;
   }
 }

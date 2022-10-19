@@ -50,12 +50,16 @@ h4, h3, h2 {
     z-index: 2;
     transition: width 1s;
 
+    @media all and (max-width: 1200px) {
+      width: 70%;
+    }
+
     @media all and (max-width: 1023px) {
       width: 100%;
     }
 
     main {
-      height: calc(95vh - 60px);
+      height: calc(100vh - 110px); // 110px: header - 60px, footer - 50px
     }
   }
 
@@ -90,4 +94,8 @@ h4, h3, h2 {
   @media all and (max-width: 767px) {
     width: 80%;
   }
+}
+
+.link-a {
+  color: goldenrod;
 }

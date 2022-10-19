@@ -33,15 +33,15 @@ export default ({ children, path }: { children: JSX.Element, path: string }) => 
             {!isMobileView && <aside><Sidebar /></aside>}
             {
               isMobileView &&
-              <Drawer
-                anchor='left'
-                open={open}
-                onClose={() => setOpen(!open)}
-              >
-                <div className='content mobile-menu'>
-                  <aside><Sidebar isMobileView={isMobileView} /></aside>
-                </div>
-              </Drawer>
+                <Drawer
+                  anchor='left'
+                  open={open}
+                  onClose={() => setOpen(!open)}
+                >
+                  <div className='content mobile-menu'>
+                    <aside><Sidebar isMobileView={isMobileView} /></aside>
+                  </div>
+                </Drawer>
             }
             <div className="content-wrap">
               <main>{children}</main>
