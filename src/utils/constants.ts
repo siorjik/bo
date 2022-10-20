@@ -19,4 +19,5 @@ export const menuItems = {
   CREDIT_VENDOR: 'creditVendor',
   PROMO_CODE_MANAGER: 'promoCodeManager',
   FEEDBACKS_ACCESS: 'feedbacksAccess',
+  PUSH_NOTIFICATION: 'pushNotifications', 
 }

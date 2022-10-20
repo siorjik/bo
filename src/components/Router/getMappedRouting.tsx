@@ -42,7 +42,7 @@ import {
   currencyCloudOTRatesPath,
   currencyCloudTopUpRatesPath,
   currencyCloudAllRatesPath,
-  feedbacksAccessPath,
+  feedbacksPath,
   masterNodePath,
   masterNodeAllMasterNodesPath,
   masterNodeRewardsPath,
@@ -58,6 +58,7 @@ import {
   cashoutCompletedKWLRequestsPath,
   cashoutPendingMulticashRequestsPath,
   cashoutCompletedMulticashRequestsPath,
+  pushNotificationsPath,
 } from '../../utils/appPaths'
 
 import KuvaWhiteLabel from '../../pages/KuvaWhiteLabel'
@@ -113,6 +114,7 @@ import CompletedKWLRequests from "../../pages/Cashout/CompletedKWLRequests"
 import PendingKWLRequests from "../../pages/Cashout/PendingKWLRequests"
 import PendingMulticashRequests from "../../pages/Cashout/PendingMuticashRequests"
 import CompletedMulticashRequests from "../../pages/Cashout/CompletedMultiCashRequests"
+import PushNotifications from "../../pages/PushNotifications"
 
 export default (userPermissionList: PermissionDataType[]) => {
   const permissions = getMapedPermissionList(userPermissionList)
@@ -230,8 +232,8 @@ export default (userPermissionList: PermissionDataType[]) => {
     } else if (item.key === permissions.Feedbacks_Access) {
       showRoutesList = [...showRoutesList,
         <Fragment key={permissions.Feedbacks_Access}>
-          <Route path='/' element={<Navigate replace to={feedbacksAccessPath} />} />
-          <Route path={feedbacksAccessPath} element={<Feedbacks />} />
+          <Route path='/' element={<Navigate replace to={feedbacksPath} />} />
+          <Route path={feedbacksPath} element={<Feedbacks />} />
         </Fragment>
       ]
     } else if (item.key === permissions.Masternodes_Access) {
@@ -270,6 +272,13 @@ export default (userPermissionList: PermissionDataType[]) => {
               <Route path={cashoutCompletedMulticashRequestsPath} element={<CompletedMulticashRequests />} />
             </Route>
           </Fragment>
+        </Fragment>
+      ]
+    } else if (item.key === permissions.Push_Notifications_Access) {
+      showRoutesList = [...showRoutesList,
+        <Fragment key={permissions.Push_Notifications_Access}>
+          <Route path='/' element={<Navigate replace to={pushNotificationsPath} />} />
+          <Route path={pushNotificationsPath} element={<PushNotifications />} />
         </Fragment>
       ]
     }

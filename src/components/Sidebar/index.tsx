@@ -44,7 +44,7 @@ import {
   currencyCloudOTRatesPath,
   currencyCloudTopUpRatesPath,
   currencyCloudAllRatesPath,
-  feedbacksAccessPath,
+  feedbacksPath,
   masterNodeAllMasterNodesPath,
   masterNodeRewardsPath,
   outboundTransfersCountriesPath,
@@ -57,6 +57,7 @@ import {
   cashoutPendingMulticashRequestsPath,
   cashoutCompletedMulticashRequestsPath,
   outboundTransfersTransfersPath,
+  pushNotificationsPath,
 } from '../../utils/appPaths'
 import { collapseItems, menuItems } from '../../utils/constants'
 import getOpenedCollapse from './getOpenedCollapse'
@@ -242,7 +243,7 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
 
           {isPermission(menuItems.FEEDBACKS_ACCESS) && <MenuItem>
             <div className="item">
-              <h4><NavLink className='item-link' to={feedbacksAccessPath}>Feedbacks</NavLink></h4>
+              <h4><NavLink className='item-link' to={feedbacksPath}>Feedbacks</NavLink></h4>
             </div>
           </MenuItem>}
 
@@ -300,6 +301,12 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
                 <NavLink className='item-link' to={cashoutPendingMulticashRequestsPath}>Pending Multicash Requests</NavLink>
                 <NavLink className='item-link' to={cashoutCompletedMulticashRequestsPath}>Completed Multicash Requests</NavLink>
               </Collapse>
+            </div>
+          </MenuItem>}
+
+          {isPermission(menuItems.PUSH_NOTIFICATION) && <MenuItem>
+            <div className="item">
+              <h4><NavLink className='item-link' to={pushNotificationsPath}>Push Notifications</NavLink></h4>
             </div>
           </MenuItem>}
         </MenuList>}

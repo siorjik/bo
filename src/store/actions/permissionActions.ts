@@ -42,7 +42,8 @@ export const fetchUserPermissiionList = createAsyncThunk(
         { key: 'Currency_Cloud_Rate_Access' },
         { key: 'Feedbacks_Access' },
         { key: 'Masternodes_Access' },
-        { key: 'Outbound_Transfers_Access' }
+        { key: 'Outbound_Transfers_Access' },
+        { key: 'Push_Notifications_Access' }
       ]*/
 
       if (result) return result

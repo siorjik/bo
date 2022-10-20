@@ -44,6 +44,8 @@ export const getSidebarPermissions = (userPermissionList: PermissionDataType[], 
       showItemList = [...showItemList, collapseItems.MASTER_NODE]
     } else if (item.key === permissions.Outbound_Transfers_Access) {
       showItemList = [...showItemList, collapseItems.OUTBOUND_TRANSFERS, collapseItems.CASHOUT]
+    } else if (item.key === permissions.Push_Notifications_Access) {
+      showItemList = [...showItemList, menuItems.PUSH_NOTIFICATION]
     }
   })
 
