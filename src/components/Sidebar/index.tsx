@@ -58,6 +58,7 @@ import {
   cashoutCompletedMulticashRequestsPath,
   outboundTransfersTransfersPath,
   pushNotificationsPath,
+  referralLinkPath,
 } from '../../utils/appPaths'
 import { collapseItems, menuItems } from '../../utils/constants'
 import getOpenedCollapse from './getOpenedCollapse'
@@ -307,6 +308,12 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
           {isPermission(menuItems.PUSH_NOTIFICATION) && <MenuItem>
             <div className="item">
               <h4><NavLink className='item-link' to={pushNotificationsPath}>Push Notifications</NavLink></h4>
+            </div>
+          </MenuItem>}
+
+          {isPermission(menuItems.REFERRAL_LINK) && <MenuItem>
+            <div className="item">
+              <h4><NavLink className='item-link' to={referralLinkPath}>Referral Link</NavLink></h4>
             </div>
           </MenuItem>}
         </MenuList>}

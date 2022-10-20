@@ -59,6 +59,7 @@ import {
   cashoutPendingMulticashRequestsPath,
   cashoutCompletedMulticashRequestsPath,
   pushNotificationsPath,
+  referralLinkPath,
 } from '../../utils/appPaths'
 
 import KuvaWhiteLabel from '../../pages/KuvaWhiteLabel'
@@ -115,6 +116,7 @@ import PendingKWLRequests from "../../pages/Cashout/PendingKWLRequests"
 import PendingMulticashRequests from "../../pages/Cashout/PendingMuticashRequests"
 import CompletedMulticashRequests from "../../pages/Cashout/CompletedMultiCashRequests"
 import PushNotifications from "../../pages/PushNotifications"
+import ReferralLink from "../../pages/ReferralLink"
 
 export default (userPermissionList: PermissionDataType[]) => {
   const permissions = getMapedPermissionList(userPermissionList)
@@ -279,6 +281,13 @@ export default (userPermissionList: PermissionDataType[]) => {
         <Fragment key={permissions.Push_Notifications_Access}>
           <Route path='/' element={<Navigate replace to={pushNotificationsPath} />} />
           <Route path={pushNotificationsPath} element={<PushNotifications />} />
+        </Fragment>
+      ]
+    } else if (item.key === permissions.Referral_Links_Access) {
+      showRoutesList = [...showRoutesList,
+        <Fragment key={permissions.Referral_Links_Access}>
+          <Route path='/' element={<Navigate replace to={referralLinkPath} />} />
+          <Route path={referralLinkPath} element={<ReferralLink />} />
         </Fragment>
       ]
     }
