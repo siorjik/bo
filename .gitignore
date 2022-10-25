@@ -18,6 +18,13 @@
 .env.test.local
 .env.production
 .env.staging
+.env.sh
+
+# nginx
+/nginx
+
+# docker
+/docker
 
 npm-debug.log*
 yarn-debug.log*
