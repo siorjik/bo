@@ -59,6 +59,16 @@ import {
   outboundTransfersTransfersPath,
   pushNotificationsPath,
   referralLinkPath,
+  paymentsTreasuryTransfersPath,
+  paymentsPayinsPath,
+  paymentsPayoutsPath,
+  paymentsUpholdTransactionsPath,
+  transactionsAllPath,
+  transactionsDuplicatePath,
+  transactionsUnpaidPath,
+  transactionsIncorectRatePath,
+  mobileTransfersTransferTablePath,
+  mobileTransfersOrderTablePath,
 } from '../../utils/appPaths'
 import { collapseItems, menuItems } from '../../utils/constants'
 import getOpenedCollapse from './getOpenedCollapse'
@@ -71,6 +81,9 @@ type CollapseMenuType = {
   masterNode: boolean,
   outboundTransfers: boolean,
   cashout: boolean,
+  payments: boolean,
+  transactions: boolean,
+  mobileTransfers: boolean,
 }
 
 export default ({ isMobileView }: { isMobileView?: boolean }) => {
@@ -82,6 +95,9 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
     masterNode: false,
     outboundTransfers: false,
     cashout: false,
+    payments: false,
+    transactions: false,
+    mobileTransfers: false,
   })
   const [menuOpen, setMenuOpen] = useState(true)
 
@@ -101,7 +117,8 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
     if (!isLink) setOpen({ ...open, [val]: !open[val as keyof CollapseMenuType] })
   }
 
-  
+  const getCollapseExpandIcon = (open: boolean) => open ?
+    <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
 
   const isPermission = (checkedItem: string) => getSidebarPermissions(userPermissionList, checkedItem)
 
@@ -119,10 +136,7 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
               <Collapse component="div" in={open.kwl} collapsedSize='35px' className='collapse'>
                 <h4>
                   Kuva White Label
-                  {
-                    open.kwl ?
-                      <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
-                  }
+                  {getCollapseExpandIcon(open.kwl)}
                 </h4>
                 <NavLink className='item-link' to={kwlSitesPath}>KWL Sites</NavLink>
                 <NavLink className='item-link' to={kwlUsersPath}>Users</NavLink>
@@ -153,10 +167,7 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
               <Collapse component="div" in={open.topUp} collapsedSize='35px' className='collapse'>
                 <h4>
                   Top Up
-                  {
-                    open.topUp ?
-                      <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
-                  }
+                  {getCollapseExpandIcon(open.topUp)}
                 </h4>
                 <NavLink className='item-link' to={topUpUsdkPath}>USDk</NavLink>
                 <NavLink className='item-link' to={topUpKuvaCoinPath}>Kuva Coin</NavLink>
@@ -183,10 +194,7 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
               <Collapse component="div" in={open.kuvaLocal} collapsedSize='35px' className='collapse'>
                 <h4>
                   Kuva Local
-                  {
-                    open.kuvaLocal ?
-                      <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
-                  }
+                  {getCollapseExpandIcon(open.kuvaLocal)}
                 </h4>
                 <NavLink className='item-link' to={kuvaLocalSettingsPath}>Settings</NavLink>
                 <NavLink className='item-link' to={kuvaLocalOrdersPath}>Orders</NavLink>
@@ -229,10 +237,7 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
               <Collapse component="div" in={open.currencyCloud} collapsedSize='35px' className='collapse'>
                 <h4>
                   Currency Cloud
-                  {
-                    open.currencyCloud ?
-                      <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
-                  }
+                  {getCollapseExpandIcon(open.currencyCloud)}
                 </h4>
                 <NavLink className='item-link' to={currencyCloudKLRatesPath}>Rates for KL</NavLink>
                 <NavLink className='item-link' to={currencyCloudOTRatesPath}>Rates for OT</NavLink>
@@ -253,10 +258,7 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
               <Collapse component="div" in={open.masterNode} collapsedSize='35px' className='collapse'>
                 <h4>
                   Master Node
-                  {
-                    open.masterNode ?
-                      <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
-                  }
+                  {getCollapseExpandIcon(open.masterNode)}
                 </h4>
                 <NavLink className='item-link' to={masterNodeAllMasterNodesPath}>All Master Nodes</NavLink>
                 <NavLink className='item-link' to={masterNodeRewardsPath}>Rewards</NavLink>
@@ -271,10 +273,7 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
                   <Collapse component="div" in={open.outboundTransfers} collapsedSize='35px' className='collapse'>
                     <h4>
                       Outbound Transfers
-                      {
-                        open.outboundTransfers ?
-                          <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
-                      }
+                      {getCollapseExpandIcon(open.outboundTransfers)}
                     </h4>
                     <NavLink className='item-link' to={outboundTransfersTransfersPath}>Transfers</NavLink>
                     <NavLink className='item-link' to={outboundTransfersCountriesPath}>Countries</NavLink>
@@ -290,10 +289,7 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
               <Collapse component="div" in={open.cashout} collapsedSize='35px' className='collapse'>
                 <h4>
                   Cashout
-                  {
-                    open.cashout ?
-                      <div className='item-expand'><ExpandLess /></div> : <div className='item-expand'><ExpandMore /></div>
-                  }
+                  {getCollapseExpandIcon(open.cashout)}
                 </h4>
                 <NavLink className='item-link' to={cashoutPendingRequestsPath}>Pending Requests</NavLink>
                 <NavLink className='item-link' to={cashoutCompletedRequestsPath}>Completed Request</NavLink>
@@ -314,6 +310,52 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
           {isPermission(menuItems.REFERRAL_LINK) && <MenuItem>
             <div className="item">
               <h4><NavLink className='item-link' to={referralLinkPath}>Referral Link</NavLink></h4>
+            </div>
+          </MenuItem>}
+
+          {isPermission(collapseItems.PAYMENTS) && <MenuItem onClick={(e) => onClick(e, collapseItems.PAYMENTS)}>
+            <div className="item">
+              <Collapse component="div" in={open.payments} collapsedSize='35px' className='collapse'>
+                <h4>
+                  Payments
+                  {getCollapseExpandIcon(open.payments)}
+                </h4>
+                <NavLink className='item-link' to={paymentsTreasuryTransfersPath}>Treasury Transfers</NavLink>
+                <NavLink className='item-link' to={paymentsPayinsPath}>Payins</NavLink>
+                <NavLink className='item-link' to={paymentsPayoutsPath}>Payouts</NavLink>
+                <NavLink className='item-link' to={paymentsUpholdTransactionsPath}>Uphold Transactions</NavLink>
+              </Collapse>
+            </div>
+          </MenuItem>}
+
+          {isPermission(collapseItems.TRANSACTIONS) && <MenuItem onClick={(e) => onClick(e, collapseItems.TRANSACTIONS)}>
+            <div className="item">
+              <Collapse component="div" in={open.transactions} collapsedSize='35px' className='collapse'>
+                <h4>
+                  Transactions
+                  {getCollapseExpandIcon(open.transactions)}
+                </h4>
+                <NavLink className='item-link' to={transactionsAllPath}>All Transactions</NavLink>
+                {isPermission(menuItems.DUPLICATE_TRANSACTIONS) &&
+                    <NavLink className='item-link' to={transactionsDuplicatePath}>Duplicate Transactions</NavLink>}
+                {isPermission(menuItems.INCORRECT_RATE_TRANSACTION) &&
+                  <NavLink className='item-link' to={transactionsIncorectRatePath}>Incorrect Rate Transactions</NavLink>}
+                {isPermission(menuItems.UNPAID_TRANSACTION) &&
+                  <NavLink className='item-link' to={transactionsUnpaidPath}>Unpaid Transactions</NavLink>}
+              </Collapse>
+            </div>
+          </MenuItem>}
+
+          {isPermission(collapseItems.MOBILE_TRANSFERS) && <MenuItem onClick={(e) => onClick(e, collapseItems.MOBILE_TRANSFERS)}>
+            <div className="item">
+              <Collapse component="div" in={open.mobileTransfers} collapsedSize='35px' className='collapse'>
+                <h4>
+                  Mobile Transfers
+                  {getCollapseExpandIcon(open.mobileTransfers)}
+                </h4>
+                <NavLink className='item-link' to={mobileTransfersTransferTablePath}>Mobile Transfer Table</NavLink>
+                <NavLink className='item-link' to={mobileTransfersOrderTablePath}>Mobile Order Table</NavLink>
+              </Collapse>
             </div>
           </MenuItem>}
         </MenuList>}

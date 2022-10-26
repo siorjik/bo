@@ -6,6 +6,9 @@ export const collapseItems = {
   MASTER_NODE: 'masterNode',
   OUTBOUND_TRANSFERS: 'outboundTransfers',
   CASHOUT: 'cashout',
+  PAYMENTS: 'payments',
+  TRANSACTIONS: 'transactions',
+  MOBILE_TRANSFERS: 'mobileTransfers'
 }
 
 export const menuItems = {
@@ -20,5 +23,8 @@ export const menuItems = {
   PROMO_CODE_MANAGER: 'promoCodeManager',
   FEEDBACKS_ACCESS: 'feedbacksAccess',
   PUSH_NOTIFICATION: 'pushNotifications',
-  REFERRAL_LINK: 'referralLink' 
+  REFERRAL_LINK: 'referralLink',
+  DUPLICATE_TRANSACTIONS: 'duplicateTtransactions',
+  INCORRECT_RATE_TRANSACTION: 'incorrectRateTransaction',
+  UNPAID_TRANSACTION: 'unpaidTransaction'
 }

@@ -1,15 +1,18 @@
 export const loginPath = '/login'
 
+// kwl
 export const kwlPath = '/kuva-white-label'
 export const kwlSitesPath = `${kwlPath}/sites`
 export const kwlUsersPath = `${kwlPath}/users`
 
+// top up
 export const topUpPath = '/top-up'
 export const topUpUsdkPath = `${topUpPath}/usdk`
 export const topUpKuvaCoinPath = `${topUpPath}/kuva-coin`
 export const topUpCashrailPath = `${topUpPath}/cashrail`
 export const topUpKuvaWhiteLabelPath = `${topUpPath}/kuva-white-label`
 
+// kuva local
 export const kuvaLocalPath = '/kuva-local'
 export const kuvaLocalSettingsPath = `${kuvaLocalPath}/settings`
 export const kuvaLocalOrdersPath = `${kuvaLocalPath}/orders`
@@ -29,22 +32,26 @@ export const kuvaLocalCreditVendorPath = `${kuvaLocalPath}/credit-vendor`
 export const kuvaLocalMobileHomePageWidgetsPath = `${kuvaLocalPath}/mobile-home-page-widgets`
 export const kuvaLocalFacebookPath = `${kuvaLocalPath}/facebook`
 
+// currency cloud
 export const currencyCloudPath = '/currency-cloud'
 export const currencyCloudKLRatesPath = `${currencyCloudPath}/kl-rates`
 export const currencyCloudOTRatesPath = `${currencyCloudPath}/ot-rates`
 export const currencyCloudTopUpRatesPath = `${currencyCloudPath}/top-up-rates`
 export const currencyCloudAllRatesPath = `${currencyCloudPath}/all-rates`
 
+// master node
 export const masterNodePath = '/master-node'
 export const masterNodeAllMasterNodesPath = `${masterNodePath}/all-master-nodes`
 export const masterNodeRewardsPath = `${masterNodePath}/rewards`
 
+// outbound transfers
 export const outboundTransfersPath = '/outbound-transafers'
 export const outboundTransfersTransfersPath = `${outboundTransfersPath}/transfers`
 export const outboundTransfersCountriesPath = `${outboundTransfersPath}/countries`
 export const outboundTransfersFeesPath = `${outboundTransfersPath}/fees`
 export const outboundTransfersRiskScoresPath = `${outboundTransfersPath}/risk-scores`
 
+// cashout
 export const cashoutPath = '/cashout'
 export const cashoutPendingRequestsPath = `${cashoutPath}/pending-requests`
 export const cashoutCompletedRequestsPath = `${cashoutPath}/completed-requests`
@@ -52,6 +59,25 @@ export const cashoutPendingKWLRequestsPath = `${cashoutPath}/pending-kwl-request
 export const cashoutCompletedKWLRequestsPath = `${cashoutPath}/completed-kwl-requests`
 export const cashoutPendingMulticashRequestsPath = `${cashoutPath}/pending-multicash-requests`
 export const cashoutCompletedMulticashRequestsPath = `${cashoutPath}/completed-multicash-requests`
+
+// payments
+export const paymentsPath = '/payments'
+export const paymentsTreasuryTransfersPath = `${paymentsPath}/treasury-transfers`
+export const paymentsPayinsPath = `${paymentsPath}/payins`
+export const paymentsPayoutsPath = `${paymentsPath}/payouts`
+export const paymentsUpholdTransactionsPath = `${paymentsPath}/uphold-transactions`
+
+// transactions
+export const transactionsPath = '/transactions'
+export const transactionsAllPath = `${transactionsPath}/all`
+export const transactionsDuplicatePath = `${transactionsPath}/duplicate`
+export const transactionsIncorectRatePath = `${transactionsPath}/incorrect-rate`
+export const transactionsUnpaidPath = `${transactionsPath}/unpaid`
+
+// mobile transfers
+export const mobileTransfersPath = '/mobile-transfers'
+export const mobileTransfersTransferTablePath = `${mobileTransfersPath}/transfer-table`
+export const mobileTransfersOrderTablePath = `${mobileTransfersPath}/order-table`
 
 export const mobileUsersPath = '/mobile-users'
 export const agentsProfilesPath = '/agents-profiles'

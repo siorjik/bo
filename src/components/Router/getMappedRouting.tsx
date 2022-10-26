@@ -60,6 +60,19 @@ import {
   cashoutCompletedMulticashRequestsPath,
   pushNotificationsPath,
   referralLinkPath,
+  paymentsPath,
+  paymentsTreasuryTransfersPath,
+  paymentsPayinsPath,
+  paymentsPayoutsPath,
+  paymentsUpholdTransactionsPath,
+  transactionsPath,
+  transactionsAllPath,
+  transactionsDuplicatePath,
+  transactionsIncorectRatePath,
+  transactionsUnpaidPath,
+  mobileTransfersPath,
+  mobileTransfersTransferTablePath,
+  mobileTransfersOrderTablePath,
 } from '../../utils/appPaths'
 
 import KuvaWhiteLabel from '../../pages/KuvaWhiteLabel'
@@ -117,6 +130,19 @@ import PendingMulticashRequests from "../../pages/Cashout/PendingMuticashRequest
 import CompletedMulticashRequests from "../../pages/Cashout/CompletedMultiCashRequests"
 import PushNotifications from "../../pages/PushNotifications"
 import ReferralLink from "../../pages/ReferralLink"
+import TreasuryTransfers from "../../pages/Payments/TreasuryTransfers"
+import Payments from "../../pages/Payments"
+import Payins from "../../pages/Payments/Payins"
+import Payouts from "../../pages/Payments/Payouts"
+import UpholdTransactions from "../../pages/Payments/UpholdTransactions"
+import Transactions from "../../pages/Transactions"
+import AllTransactions from "../../pages/Transactions/AllTransactions"
+import DuplicateTransactions from "../../pages/Transactions/DuplicateTransactions"
+import IncorrectRateTransactions from "../../pages/Transactions/IncorrectRateTransactions"
+import UnpaidTransactions from "../../pages/Transactions/UnpaidTransactions"
+import MobileTransfers from "../../pages/MobileTransfers"
+import MobileTransferTable from "../../pages/MobileTransfers/MobileTransferTable"
+import MobileOrderTable from "../../pages/MobileTransfers/MobileOrderTable"
 
 export default (userPermissionList: PermissionDataType[]) => {
   const permissions = getMapedPermissionList(userPermissionList)
@@ -288,6 +314,48 @@ export default (userPermissionList: PermissionDataType[]) => {
         <Fragment key={permissions.Referral_Links_Access}>
           <Route path='/' element={<Navigate replace to={referralLinkPath} />} />
           <Route path={referralLinkPath} element={<ReferralLink />} />
+        </Fragment>
+      ]
+    } else if (item.key === permissions.Payments_Access) {
+      showRoutesList = [...showRoutesList,
+        <Fragment key={permissions.Payments_Access}>
+          <Fragment>
+            <Route path='/' element={<Navigate replace to={paymentsPath} />} />
+            <Route path={paymentsPath} element={<Navigate replace to={paymentsTreasuryTransfersPath} />} />
+            <Route path={paymentsPath} element={<Payments />} >
+              <Route path={paymentsTreasuryTransfersPath} element={<TreasuryTransfers />} />
+              <Route path={paymentsPayinsPath} element={<Payins />} />
+              <Route path={paymentsPayoutsPath} element={<Payouts />} />
+              <Route path={paymentsUpholdTransactionsPath} element={<UpholdTransactions />} />
+            </Route>
+          </Fragment>
+          <Fragment>
+            <Route path='/' element={<Navigate replace to={transactionsPath} />} />
+            <Route path={transactionsPath} element={<Navigate replace to={transactionsAllPath} />} />
+            <Route path={transactionsPath} element={<Transactions />} >
+              <Route path={transactionsAllPath} element={<AllTransactions />} />
+              {
+                thisArr.find(perm => perm.key === permissions.SuperUser) &&
+                  <Route path={transactionsDuplicatePath} element={<DuplicateTransactions />} />
+              }
+              {
+                thisArr.find(perm => perm.key === permissions.SuperUser) &&
+                  <Route path={transactionsIncorectRatePath} element={<IncorrectRateTransactions />} />
+              }
+              {
+                thisArr.find(perm => perm.key === permissions.SuperUser) &&
+                  <Route path={transactionsUnpaidPath} element={<UnpaidTransactions />} />
+              }
+            </Route>
+          </Fragment>
+          <Fragment>
+            <Route path='/' element={<Navigate replace to={mobileTransfersPath} />} />
+            <Route path={mobileTransfersPath} element={<Navigate replace to={mobileTransfersTransferTablePath} />} />
+            <Route path={mobileTransfersPath} element={<MobileTransfers />} >
+              <Route path={mobileTransfersTransferTablePath} element={<MobileTransferTable />} />
+              <Route path={mobileTransfersOrderTablePath} element={<MobileOrderTable />} />
+            </Route>
+          </Fragment>
         </Fragment>
       ]
     }

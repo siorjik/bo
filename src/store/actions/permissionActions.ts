@@ -45,6 +45,7 @@ export const fetchUserPermissiionList = createAsyncThunk(
         { key: 'Outbound_Transfers_Access' },
         { key: 'Push_Notifications_Access' },
         { key: 'Referral_Links_Access' },
+        { key: 'Payments_Access' }
       ]*/
 
       if (result) return result

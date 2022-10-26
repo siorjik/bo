@@ -47,6 +47,19 @@ import {
   cashoutCompletedKWLRequestsPath,
   cashoutPendingMulticashRequestsPath,
   cashoutCompletedMulticashRequestsPath,
+  paymentsPath,
+  paymentsTreasuryTransfersPath,
+  paymentsPayinsPath,
+  paymentsPayoutsPath,
+  paymentsUpholdTransactionsPath,
+  transactionsPath,
+  transactionsAllPath,
+  transactionsDuplicatePath,
+  transactionsIncorectRatePath,
+  transactionsUnpaidPath,
+  mobileTransfersPath,
+  mobileTransfersTransferTablePath,
+  mobileTransfersOrderTablePath,
 } from '../../utils/appPaths'
 
 export default (path: string) => {
@@ -110,6 +123,25 @@ export default (path: string) => {
     case cashoutPendingMulticashRequestsPath:
     case cashoutCompletedMulticashRequestsPath:
       return collapseItems.CASHOUT
+
+    case paymentsPath:
+    case paymentsTreasuryTransfersPath:
+    case paymentsPayinsPath:
+    case paymentsPayoutsPath:
+    case paymentsUpholdTransactionsPath:
+      return collapseItems.PAYMENTS
+
+    case transactionsPath:
+    case transactionsAllPath:
+    case transactionsDuplicatePath:
+    case transactionsIncorectRatePath:
+    case transactionsUnpaidPath:
+      return collapseItems.TRANSACTIONS
+
+    case mobileTransfersPath:
+    case mobileTransfersTransferTablePath:
+    case mobileTransfersOrderTablePath:
+      return collapseItems.MOBILE_TRANSFERS
 
     default: return ''
   }

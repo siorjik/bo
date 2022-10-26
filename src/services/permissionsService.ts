@@ -15,7 +15,13 @@ export const getSidebarPermissions = (userPermissionList: PermissionDataType[], 
 
   userPermissionList.forEach(item => {
     if (item.key === permissions.SuperUser) {
-      showItemList = [...showItemList, collapseItems.KWL]
+      showItemList = [
+        ...showItemList,
+        collapseItems.KWL,
+        menuItems.DUPLICATE_TRANSACTIONS,
+        menuItems.INCORRECT_RATE_TRANSACTION,
+        menuItems.UNPAID_TRANSACTION,
+      ]
     } else if (item.key === permissions.Bug_Reports_Access) {
       showItemList = [...showItemList, menuItems.BUG_REPORT]
     } else if (item.key === permissions.Agents_Access) {
@@ -48,6 +54,8 @@ export const getSidebarPermissions = (userPermissionList: PermissionDataType[], 
       showItemList = [...showItemList, menuItems.PUSH_NOTIFICATION]
     } else if (item.key === permissions.Referral_Links_Access) {
       showItemList = [...showItemList, menuItems.REFERRAL_LINK]
+    } else if (item.key === permissions.Payments_Access) {
+      showItemList = [...showItemList, collapseItems.PAYMENTS, collapseItems.TRANSACTIONS, collapseItems.MOBILE_TRANSFERS]
     }
   })
 
