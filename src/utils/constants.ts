@@ -11,7 +11,7 @@ export const collapseItems = {
   MOBILE_TRANSFERS: 'mobileTransfers'
 }
 
-export const menuItems = {
+/*export const menuItems = {
   MOBILE_USERS: 'mobileUser',
   AGENTS_PROFILES: 'agentsProfiles',
   AGENT_GROUPS: 'agentGroups',
@@ -27,4 +27,4 @@ export const menuItems = {
   DUPLICATE_TRANSACTIONS: 'duplicateTtransactions',
   INCORRECT_RATE_TRANSACTION: 'incorrectRateTransaction',
   UNPAID_TRANSACTION: 'unpaidTransaction'
-}
+}*/

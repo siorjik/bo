@@ -5,32 +5,20 @@ import { getLocationProp } from '../../helpers/history'
 import { MainContext } from '../../App'
 import getOpenedCollapse from './getOpenedCollapse'
 import MappedSidebar from './MappedSidebar'
-
-type CollapseMenuType = {
-  kwl: boolean,
-  topUp: boolean,
-  kuvaLocal: boolean,
-  currencyCloud: boolean,
-  masterNode: boolean,
-  outboundTransfers: boolean,
-  cashout: boolean,
-  payments: boolean,
-  transactions: boolean,
-  mobileTransfers: boolean,
-}
+import { collapseItems } from '../../utils/constants'
 
 export default ({ isMobileView }: { isMobileView?: boolean }) => {
-  const [open, setOpen] = useState<CollapseMenuType>({
-    kwl: false,
-    topUp: false,
-    kuvaLocal: false,
-    currencyCloud: false,
-    masterNode: false,
-    outboundTransfers: false,
-    cashout: false,
-    payments: false,
-    transactions: false,
-    mobileTransfers: false,
+  const [open, setOpen] = useState<{[key: string]: boolean}>({
+    [collapseItems.KWL]: false,
+    [collapseItems.TOP_UP]: false,
+    [collapseItems.KUVA_LOCAL]: false,
+    [collapseItems.CURRENCY_CLOUD]: false,
+    [collapseItems.MASTER_NODE]: false,
+    [collapseItems.OUTBOUND_TRANSFERS]: false,
+    [collapseItems.CASHOUT]: false,
+    [collapseItems.PAYMENTS]: false,
+    [collapseItems.TRANSACTIONS]: false,
+    [collapseItems.MOBILE_TRANSFERS]: false,
   })
   const [menuOpen, setMenuOpen] = useState(true)
 
@@ -47,7 +35,7 @@ export default ({ isMobileView }: { isMobileView?: boolean }) => {
 
     const isLink = target.className === 'item-link'
 
-    if (!isLink) setOpen({ ...open, [val]: !open[val as keyof CollapseMenuType] })
+    if (!isLink) setOpen({ ...open, [val]: !open[val] })
   }
 
   return (
