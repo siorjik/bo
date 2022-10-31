@@ -51,14 +51,14 @@ export const outboundTransfersCountriesPath = `${outboundTransfersPath}/countrie
 export const outboundTransfersFeesPath = `${outboundTransfersPath}/fees`
 export const outboundTransfersRiskScoresPath = `${outboundTransfersPath}/risk-scores`
 
-// cashout
-export const cashoutPath = '/cashout'
-export const cashoutPendingRequestsPath = `${cashoutPath}/pending-requests`
-export const cashoutCompletedRequestsPath = `${cashoutPath}/completed-requests`
-export const cashoutPendingKWLRequestsPath = `${cashoutPath}/pending-kwl-requests`
-export const cashoutCompletedKWLRequestsPath = `${cashoutPath}/completed-kwl-requests`
-export const cashoutPendingMulticashRequestsPath = `${cashoutPath}/pending-multicash-requests`
-export const cashoutCompletedMulticashRequestsPath = `${cashoutPath}/completed-multicash-requests`
+// cash out
+export const cashOutPath = '/cashout'
+export const cashOutPendingRequestsPath = `${cashOutPath}/pending-requests`
+export const cashOutCompletedRequestsPath = `${cashOutPath}/completed-requests`
+export const cashOutPendingKWLRequestsPath = `${cashOutPath}/pending-kwl-requests`
+export const cashOutCompletedKWLRequestsPath = `${cashOutPath}/completed-kwl-requests`
+export const cashOutPendingMulticashRequestsPath = `${cashOutPath}/pending-multicash-requests`
+export const cashOutCompletedMulticashRequestsPath = `${cashOutPath}/completed-multicash-requests`
 
 // payments
 export const paymentsPath = '/payments'

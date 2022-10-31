@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { FETCH_KWL_SITE_LIST, FETCH_KWL_USER_LIST } from './actionTypes'
 
-import { apiKWLSitesApiPath, apiKWLUsersApiPath } from '../../utils/apiPaths'
+import { apiKWLSitesPath, apiKWLUsersPath } from '../../utils/apiPaths'
 
 import apiRequestServiceWithRefresh from '../../services/apiRequestServiceWithRefresh'
 import { KWLSiteData, KWLUserData } from '../../types/kwlTypes'
@@ -13,7 +13,7 @@ export const fetchKWLSiteList = createAsyncThunk<KWLSiteData[], undefined, { rej
   FETCH_KWL_SITE_LIST,
   async (_, { rejectWithValue, dispatch }) => {
     try {
-      const result = await apiRequestServiceWithRefresh(dispatch, 'get', apiKWLSitesApiPath)
+      const result = await apiRequestServiceWithRefresh(dispatch, 'get', apiKWLSitesPath)
   
       if (result) return result
     } catch (err) {
@@ -26,7 +26,7 @@ export const fetchKWLUserList = createAsyncThunk<KWLUserData[], undefined, { rej
   FETCH_KWL_USER_LIST,
   async (_, { rejectWithValue, dispatch }) => {
     try {
-      const result = await apiRequestServiceWithRefresh(dispatch, 'get', apiKWLUsersApiPath)
+      const result = await apiRequestServiceWithRefresh(dispatch, 'get', apiKWLUsersPath)
   
       if (result) return result
     } catch (err) {

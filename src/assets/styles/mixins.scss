@@ -13,6 +13,10 @@
   &-center {
     justify-content: center;
   }
+
+  &-end {
+    justify-content: end;
+  }
 }
 
 .align-items {
@@ -96,5 +100,11 @@
 
   &-hidden {
     overflow: hidden;
+  }
+}
+
+.white-space {
+  &-no {
+    white-space: nowrap;
   }
 }

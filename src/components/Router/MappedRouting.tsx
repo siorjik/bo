@@ -55,13 +55,13 @@ import {
   outboundTransfersCountriesPath,
   outboundTransfersFeesPath,
   outboundTransfersRiskScoresPath,
-  cashoutPath,
-  cashoutPendingRequestsPath,
-  cashoutCompletedRequestsPath,
-  cashoutPendingKWLRequestsPath,
-  cashoutCompletedKWLRequestsPath,
-  cashoutPendingMulticashRequestsPath,
-  cashoutCompletedMulticashRequestsPath,
+  cashOutPath,
+  cashOutPendingRequestsPath,
+  cashOutCompletedRequestsPath,
+  cashOutPendingKWLRequestsPath,
+  cashOutCompletedKWLRequestsPath,
+  cashOutPendingMulticashRequestsPath,
+  cashOutCompletedMulticashRequestsPath,
   pushNotificationsPath,
   referralLinkPath,
   paymentsPath,
@@ -130,13 +130,13 @@ import Transfers from "../../pages/OutboundTransfers/Transfers"
 import OutboundTransfersCountries from "../../pages/OutboundTransfers/Countries"
 import Fees from "../../pages/OutboundTransfers/Fees"
 import RiskScores from "../../pages/OutboundTransfers/RiskScores"
-import Cashout from "../../pages/Cashout"
-import PendingRequests from "../../pages/Cashout/PendingRequests"
-import CompletedRequests from "../../pages/Cashout/CompletedRequests"
-import CompletedKWLRequests from "../../pages/Cashout/CompletedKWLRequests"
-import PendingKWLRequests from "../../pages/Cashout/PendingKWLRequests"
-import PendingMulticashRequests from "../../pages/Cashout/PendingMuticashRequests"
-import CompletedMulticashRequests from "../../pages/Cashout/CompletedMultiCashRequests"
+import CashOut from "../../pages/CashOut"
+import PendingRequests from "../../pages/CashOut/PendingRequests"
+import CompletedRequests from "../../pages/CashOut/CompletedRequests"
+import CompletedKWLRequests from "../../pages/CashOut/CompletedKWLRequests"
+import PendingKWLRequests from "../../pages/CashOut/PendingKWLRequests"
+import PendingMulticashRequests from "../../pages/CashOut/PendingMuticashRequests"
+import CompletedMulticashRequests from "../../pages/CashOut/CompletedMultiCashRequests"
 import PushNotifications from "../../pages/PushNotifications"
 import ReferralLink from "../../pages/ReferralLink"
 import TreasuryTransfers from "../../pages/Payments/TreasuryTransfers"
@@ -298,15 +298,15 @@ export default ({ userPermissionList }: { userPermissionList: PermissionDataType
           </Route>
         </Fragment>
         <Fragment>
-          <Route path='/' element={<Navigate replace to={cashoutPath} />} />
-          <Route path={cashoutPath} element={<Navigate replace to={cashoutPendingRequestsPath} />} />
-          <Route path={cashoutPath} element={<Cashout />} >
-            <Route path={cashoutPendingRequestsPath} element={<PendingRequests />} />
-            <Route path={cashoutCompletedRequestsPath} element={<CompletedRequests />} />
-            <Route path={cashoutPendingKWLRequestsPath} element={<PendingKWLRequests />} />
-            <Route path={cashoutCompletedKWLRequestsPath} element={<CompletedKWLRequests />} />
-            <Route path={cashoutPendingMulticashRequestsPath} element={<PendingMulticashRequests />} />
-            <Route path={cashoutCompletedMulticashRequestsPath} element={<CompletedMulticashRequests />} />
+          <Route path='/' element={<Navigate replace to={cashOutPath} />} />
+          <Route path={cashOutPath} element={<Navigate replace to={cashOutPendingRequestsPath} />} />
+          <Route path={cashOutPath} element={<CashOut />} >
+            <Route path={cashOutPendingRequestsPath} element={<PendingRequests />} />
+            <Route path={cashOutCompletedRequestsPath} element={<CompletedRequests />} />
+            <Route path={cashOutPendingKWLRequestsPath} element={<PendingKWLRequests />} />
+            <Route path={cashOutCompletedKWLRequestsPath} element={<CompletedKWLRequests />} />
+            <Route path={cashOutPendingMulticashRequestsPath} element={<PendingMulticashRequests />} />
+            <Route path={cashOutCompletedMulticashRequestsPath} element={<CompletedMulticashRequests />} />
           </Route>
         </Fragment>
       </Fragment>

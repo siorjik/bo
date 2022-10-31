@@ -40,13 +40,13 @@ import {
   outboundTransfersCountriesPath,
   outboundTransfersFeesPath,
   outboundTransfersRiskScoresPath,
-  cashoutPath,
-  cashoutPendingRequestsPath,
-  cashoutCompletedRequestsPath,
-  cashoutPendingKWLRequestsPath,
-  cashoutCompletedKWLRequestsPath,
-  cashoutPendingMulticashRequestsPath,
-  cashoutCompletedMulticashRequestsPath,
+  cashOutPath,
+  cashOutPendingRequestsPath,
+  cashOutCompletedRequestsPath,
+  cashOutPendingKWLRequestsPath,
+  cashOutCompletedKWLRequestsPath,
+  cashOutPendingMulticashRequestsPath,
+  cashOutCompletedMulticashRequestsPath,
   paymentsPath,
   paymentsTreasuryTransfersPath,
   paymentsPayinsPath,
@@ -115,13 +115,13 @@ export default (path: string) => {
     case outboundTransfersRiskScoresPath:
       return collapseItems.OUTBOUND_TRANSFERS
 
-    case cashoutPath:
-    case cashoutPendingRequestsPath:
-    case cashoutCompletedRequestsPath:
-    case cashoutPendingKWLRequestsPath:
-    case cashoutCompletedKWLRequestsPath:
-    case cashoutPendingMulticashRequestsPath:
-    case cashoutCompletedMulticashRequestsPath:
+    case cashOutPath:
+    case cashOutPendingRequestsPath:
+    case cashOutCompletedRequestsPath:
+    case cashOutPendingKWLRequestsPath:
+    case cashOutCompletedKWLRequestsPath:
+    case cashOutPendingMulticashRequestsPath:
+    case cashOutCompletedMulticashRequestsPath:
       return collapseItems.CASHOUT
 
     case paymentsPath:

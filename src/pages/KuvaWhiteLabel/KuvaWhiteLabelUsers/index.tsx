@@ -27,7 +27,7 @@ const KuvaWhiteLabelUsers = () => {
         !listFetchFinished ? <Loader /> :
         <Container className="pt-25 pb-10 h-100-percent overflow-hidden" maxWidth='xl'>
           <h3 className="mb-25">Kuva White Label Users</h3>
-          <Table bodyData={mappedData} headData={headData} dataKeys={dataKeys} сontainerStyle='pb-50' />
+          <Table bodyData={mappedData} headData={headData} dataKeys={dataKeys} containerStyle='pb-50' isPagination={false} />
         </Container>
       }
     </>

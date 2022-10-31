@@ -36,7 +36,7 @@ const KuvaWhiteLabelSites = () => {
           variant="contained"
           href={`${domain}/KuvaWhiteLabel/Create`} target='_blank'
         >Create new</Button>
-        <Table bodyData={mappedData} headData={headData} dataKeys={dataKeys} сontainerStyle='pb-100' />
+        <Table bodyData={mappedData} headData={headData} dataKeys={dataKeys} containerStyle='pb-100' isPagination={false} />
       </Container>
     </>
   )

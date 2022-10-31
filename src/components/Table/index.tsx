@@ -1,21 +1,41 @@
 import { TableContainer, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
+import moment from 'moment'
+
+import Pagination from './Pagination'
+
+type ObjDataType = { [key: string]: string | number | boolean | JSX.Element | { [key: string]: string | number | boolean } }
 
 type TableType = {
   headData: string[]
-  bodyData: { [key: string]: string | number | boolean | JSX.Element }[]
+  bodyData: ObjDataType[]
   dataKeys: string[]
-  сontainerStyle: string,
+  containerStyle: string,
+  fetchData?: (params: { [key: string]: string | number }) => void,
+  isPagination?: boolean,
   isZebra?: boolean,
+  dataCount?: number,
+  isResetPagination?: boolean,
 }
 
-export default ({ headData, bodyData, dataKeys, сontainerStyle, isZebra = true }: TableType) => {
-  const getValue = (item: { [key: string]: string | number | boolean | JSX.Element }, key: string | boolean) => {
+export default ({
+  headData,
+  bodyData,
+  dataKeys,
+  containerStyle,
+  fetchData = () => {},
+  isPagination = true,
+  isZebra = true,
+  dataCount = 0,
+  isResetPagination = false
+}: TableType
+) => {
+  const getValue = (item: ObjDataType, key: string | boolean) => {
     if (typeof item[key as string] === 'boolean') return item[key as string] ? 'Yes' : 'No'
     else return item[key as string]
   }
 
   return (
-    <TableContainer className={`h-100-percent ${сontainerStyle}`}>
+    <TableContainer className={`h-100-percent ${containerStyle}`}>
       <Table className={`table ${isZebra ? 'zebra' : ''}`} stickyHeader>
         <TableHead>
           <TableRow>
@@ -27,14 +47,22 @@ export default ({ headData, bodyData, dataKeys, сontainerStyle, isZebra = true 
             bodyData.map((item, index) => (
               <TableRow key={index}>
                 {
-                  dataKeys.map((key, index) => (
-                    <TableCell key={index}>{getValue(item, key)}</TableCell>
-                  ))
+                  dataKeys.map((key, index) => {
+                    if (key.includes('Date')) item[key] = moment(item[key] as string).format('DD/MM/YYYY, HH:mm:ss')
+
+                    return (
+                      <TableCell
+                        className="white-space-no"
+                        key={index}
+                      >{getValue(item, key) as string | number | JSX.Element}</TableCell>
+                    )
+                  })
                 }
               </TableRow>
             ))
           }
         </TableBody>
+        {isPagination && <Pagination fetchData={fetchData} count={dataCount} isReset={isResetPagination} />}
       </Table>
     </TableContainer>
   )

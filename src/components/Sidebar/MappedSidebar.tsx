@@ -47,12 +47,12 @@ import {
   outboundTransfersCountriesPath,
   outboundTransfersFeesPath,
   outboundTransfersRiskScoresPath,
-  cashoutPendingRequestsPath,
-  cashoutCompletedRequestsPath,
-  cashoutPendingKWLRequestsPath,
-  cashoutCompletedKWLRequestsPath,
-  cashoutPendingMulticashRequestsPath,
-  cashoutCompletedMulticashRequestsPath,
+  cashOutPendingRequestsPath,
+  cashOutCompletedRequestsPath,
+  cashOutPendingKWLRequestsPath,
+  cashOutCompletedKWLRequestsPath,
+  cashOutPendingMulticashRequestsPath,
+  cashOutCompletedMulticashRequestsPath,
   outboundTransfersTransfersPath,
   pushNotificationsPath,
   referralLinkPath,
@@ -257,15 +257,15 @@ export default (
         <div className="item">
           <Collapse component="div" in={open.cashout} collapsedSize='35px' className='collapse'>
             <h4>
-              Cashout
+              Cash Out
               {getCollapseExpandIcon(open.cashout)}
             </h4>
-            <NavLink className='item-link' to={cashoutPendingRequestsPath}>Pending Requests</NavLink>
-            <NavLink className='item-link' to={cashoutCompletedRequestsPath}>Completed Request</NavLink>
-            <NavLink className='item-link' to={cashoutPendingKWLRequestsPath}>Pending KWL Requests</NavLink>
-            <NavLink className='item-link' to={cashoutCompletedKWLRequestsPath}>Completed KWL Requests</NavLink>
-            <NavLink className='item-link' to={cashoutPendingMulticashRequestsPath}>Pending Multicash Requests</NavLink>
-            <NavLink className='item-link' to={cashoutCompletedMulticashRequestsPath}>Completed Multicash Requests</NavLink>
+            <NavLink className='item-link' to={cashOutPendingRequestsPath}>Pending Requests</NavLink>
+            <NavLink className='item-link' to={cashOutCompletedRequestsPath}>Completed Request</NavLink>
+            <NavLink className='item-link' to={cashOutPendingKWLRequestsPath}>Pending KWL Requests</NavLink>
+            <NavLink className='item-link' to={cashOutCompletedKWLRequestsPath}>Completed KWL Requests</NavLink>
+            <NavLink className='item-link' to={cashOutPendingMulticashRequestsPath}>Pending Multicash Requests</NavLink>
+            <NavLink className='item-link' to={cashOutCompletedMulticashRequestsPath}>Completed Multicash Requests</NavLink>
           </Collapse>
         </div>
       </MenuItem>

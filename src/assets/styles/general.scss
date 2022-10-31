@@ -99,3 +99,17 @@ h4, h3, h2 {
 .link-a {
   color: goldenrod;
 }
+
+.search {
+  display: flex;
+  justify-content: flex-end;
+
+  input {
+    width: 30%;
+    min-width: 300px;
+  }
+
+  button {
+    margin-left: 10px;
+  }
+}

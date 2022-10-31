@@ -3,6 +3,9 @@ export type UserDataType = {
   name: string,
   phoneNumber: string,
   isTwoFactorEnabled: boolean,
+  extId?: string,
+  firstName?: string,
+  lastName?: string, 
 }
 
 export type UserType = {
