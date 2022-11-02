@@ -123,7 +123,7 @@ export default (
         <div className="item">
           <Collapse component="div" in={open.topUp} collapsedSize='35px' className='collapse'>
             <h4>
-              Top Up
+              Top Up Requests
               {getCollapseExpandIcon(open.topUp)}
             </h4>
             <NavLink className='item-link' to={topUpUsdkPath}>USDk</NavLink>

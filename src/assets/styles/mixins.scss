@@ -38,12 +38,6 @@
   }
 }
 
-.color {
-  &-white {
-    color: white;
-  }
-}
-
 // width, height, margin, padding
 @for $i from 1 through 300 {
   .h-#{$i}-vh {
@@ -87,24 +81,22 @@
   }
 }
 
-.background {
-  &-black {
-    background-color: black;
+// colors
+$colors: (aqua: $aqua, red: red, orange: orange, green: green, white: white, black: black);
+@each $key, $val in $colors {
+  .color-#{$key} {
+    color: $val;
+  }
+
+  .background-#{$key} {
+    background-color: $val;
   }
 }
 
-.overflow {
-  &-auto {
-    overflow: auto;
-  }
-
-  &-hidden {
-    overflow: hidden;
-  }
-}
-
-.white-space {
-  &-no {
-    white-space: nowrap;
+// overflow
+$overflows: auto, hidden;
+@each $overflow in $overflows {
+  .overflow-#{$overflow} {
+    overflow: $overflow;
   }
 }

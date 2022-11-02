@@ -7,6 +7,7 @@ import loader from './loaderReducer'
 import user from './userReducer'
 import kwl from './kwlReducers'
 import cashOut from './cashOutReducer'
+import topUp from './topUpReducer'
 
 const rootReducer = combineReducers({
   auth,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   loader,
   kwl,
   cashOut,
+  topUp,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

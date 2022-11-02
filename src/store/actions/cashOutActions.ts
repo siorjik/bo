@@ -5,15 +5,9 @@ import { FETCH_CASH_OUT_PENDING_LIST } from "./actionTypes"
 import apiRequestServiceWithRefresh from "../../services/apiRequestServiceWithRefresh"
 import { apiCashOutPendingPath } from '../../utils/apiPaths'
 import { CashOutDataType } from "../../types/cashOutTypes"
+import { RequestErrType, ResultListType } from "../../types/generalTypes"
 
-type ErrType = { message: string }
-type  ResultType = {
-  items: CashOutDataType[],
-  count: number,
-  pageNumber: number,
-}
-
-export const fetchCashOutPendingList = createAsyncThunk<ResultType, string, { rejectValue: ErrType }>(
+export const fetchCashOutPendingList = createAsyncThunk<ResultListType<CashOutDataType>, string, { rejectValue: RequestErrType }>(
   FETCH_CASH_OUT_PENDING_LIST,
   async (queryParams: string, { rejectWithValue, dispatch }) => {
     try {
@@ -21,7 +15,7 @@ export const fetchCashOutPendingList = createAsyncThunk<ResultType, string, { re
   
       if (result) return result
     } catch (err) {
-      return rejectWithValue(err as ErrType)
+      return rejectWithValue(err as RequestErrType)
     }
   }
 )

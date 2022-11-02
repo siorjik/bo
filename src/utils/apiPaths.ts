@@ -22,3 +22,7 @@ export const apiKWLUsersPath = `${backOfficeApiPath}/kwl/users`
 // cashout
 const apiCashOutPath = `${backOfficeApiPath}/cash-outs`
 export const apiCashOutPendingPath = `${apiCashOutPath}/pending`
+
+// top up
+const apiTopUpPath = `${backOfficeApiPath}/top-up-requests`
+export const apiTopUpUsdkPath = `${apiTopUpPath}/usdk`

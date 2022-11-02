@@ -39,7 +39,7 @@ export default ({
       <Table className={`table ${isZebra ? 'zebra' : ''}`} stickyHeader>
         <TableHead>
           <TableRow>
-            {headData.map((item, index) => (<TableCell key={index}><h4>{item}</h4></TableCell>))}
+            {headData.map((item, index) => (<TableCell className="white-space-no" key={index}><h4>{item}</h4></TableCell>))}
           </TableRow>
         </TableHead>
         <TableBody>

@@ -91,7 +91,7 @@ import MobileUsers from '../../pages/MobileUsers'
 import AgentsProfiles from '../../pages/AgentsProfiles'
 import AgentGroups from '../../pages/AgentGroups'
 import TopUp from '../../pages/TopUp'
-import USDk from '../../pages/TopUp/USDk'
+import Usdk from '../../pages/TopUp/Usdk'
 import KuvaCoin from '../../pages/TopUp/KuvaCoin'
 import Cashrail from '../../pages/TopUp/Cashrail'
 import TopUpKuvaWhiteLabel from '../../pages/TopUp/KuvaWhiteLabel'
@@ -190,7 +190,7 @@ export default ({ userPermissionList }: { userPermissionList: PermissionDataType
         <Route path='/' element={<Navigate replace to={topUpPath} />} />
         <Route path={topUpPath} element={<Navigate replace to={topUpUsdkPath} />} />
         <Route path={topUpPath} element={<TopUp />} >
-          <Route path={topUpUsdkPath} element={<USDk />} />
+          <Route path={topUpUsdkPath} element={<Usdk />} />
           <Route path={topUpKuvaCoinPath} element={<KuvaCoin />} />
           <Route path={topUpCashrailPath} element={<Cashrail />} />
           <Route path={topUpKuvaWhiteLabelPath} element={<TopUpKuvaWhiteLabel />} />

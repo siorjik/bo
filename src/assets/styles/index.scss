@@ -1,3 +1,7 @@
+@import './variables.scss';
+@import './general.scss';
+@import './mixins.scss';
+
 @import './components/Header.scss';
 @import './components/Footer.scss';
 @import './components/Sidebar.scss';
@@ -5,6 +9,3 @@
 @import './components/Table.scss';
 
 @import './pages/Login.scss';
-
-@import './general.scss';
-@import './mixins.scss';

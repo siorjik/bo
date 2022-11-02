@@ -1,3 +1,4 @@
+import { EntityType } from "./generalTypes"
 import { UserDataType } from "./userTypes"
 
 export type CashOutDataType = {
@@ -11,15 +12,6 @@ export type CashOutDataType = {
 }
 
 export type CashOutType = {
-  cashOutPending: {
-    list: {
-      items: CashOutDataType[],
-      pageNumber: number,
-      count: number,
-    },
-    data?: CashOutDataType,
-    listFetchStart: boolean,
-    listFetchFinished: boolean,
-  }
+  cashOutPending: EntityType<CashOutDataType>,
   error: string,
 }

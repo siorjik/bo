@@ -27,3 +27,6 @@ export const FETCH_KWL_USER_LIST = 'FETCH_KWL_USER_LIST'
 
 // cash out
 export const FETCH_CASH_OUT_PENDING_LIST = 'FETCH_CASH_OUT_PENDING_LIST'
+
+// top up
+export const FETCH_TOP_UP_USDK_LIST = 'FETCH_TOP_UP_USDK_LIST'
