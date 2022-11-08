@@ -77,6 +77,8 @@ import {
   mobileTransfersPath,
   mobileTransfersTransferTablePath,
   mobileTransfersOrderTablePath,
+  kwlCountriesPath,
+  kwlEditCountriesPath,
 } from '../../utils/appPaths'
 
 import Loader from "../Loader"
@@ -85,8 +87,9 @@ import PageNotFound from "../../pages/PageNotFound"
 import Profile from "../../pages/Profile"
 
 import KuvaWhiteLabel from '../../pages/KuvaWhiteLabel'
-import KuvaWhiteLabelSites from '../../pages/KuvaWhiteLabel/KuvaWhiteLabelSites'
-import KuvaWhiteLabelUsers from '../../pages/KuvaWhiteLabel/KuvaWhiteLabelUsers'
+import KWLSites from '../../pages/KuvaWhiteLabel/Sites'
+import KWLUsers from '../../pages/KuvaWhiteLabel/Users'
+import KWLCountries from '../../pages/KuvaWhiteLabel/Countries'
 import MobileUsers from '../../pages/MobileUsers'
 import AgentsProfiles from '../../pages/AgentsProfiles'
 import AgentGroups from '../../pages/AgentGroups'
@@ -152,6 +155,7 @@ import UnpaidTransactions from "../../pages/Transactions/UnpaidTransactions"
 import MobileTransfers from "../../pages/MobileTransfers"
 import MobileTransferTable from "../../pages/MobileTransfers/MobileTransferTable"
 import MobileOrderTable from "../../pages/MobileTransfers/MobileOrderTable"
+import Edit from "../../pages/KuvaWhiteLabel/Countries/Edit"
 
 export default ({ userPermissionList }: { userPermissionList: PermissionDataType[] }) => {
   const permissions = getMapedPermissionList(userPermissionList)
@@ -164,8 +168,10 @@ export default ({ userPermissionList }: { userPermissionList: PermissionDataType
         <Route path='/' element={<Navigate replace to={kwlPath} />} />
         <Route path={kwlPath} element={<Navigate replace to={kwlSitesPath} />} />
         <Route path={kwlPath} element={<KuvaWhiteLabel />} >
-          <Route path={kwlSitesPath} element={<KuvaWhiteLabelSites />} />
-          <Route path={kwlUsersPath} element={<KuvaWhiteLabelUsers />} />
+          <Route path={kwlSitesPath} element={<KWLSites />} />
+          <Route path={kwlUsersPath} element={<KWLUsers />} />
+          <Route path={kwlCountriesPath} element={<KWLCountries />} />
+          <Route path={kwlEditCountriesPath} element={<Edit />} />
         </Route>
       </Fragment>
       ]

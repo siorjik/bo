@@ -3,7 +3,11 @@ import moment from 'moment'
 
 import Pagination from './Pagination'
 
-type ObjDataType = { [key: string]: string | number | boolean | JSX.Element | { [key: string]: string | number | boolean } }
+type ObjDataType = {
+  [key: string]:
+  string | number | boolean | JSX.Element | number[] | string[] |
+  { [key: string]: string | number | boolean | [] }
+}
 
 type TableType = {
   headData: string[]
@@ -22,7 +26,7 @@ export default ({
   bodyData,
   dataKeys,
   containerStyle,
-  fetchData = () => {},
+  fetchData = () => { },
   isPagination = true,
   isZebra = true,
   dataCount = 0,
@@ -52,7 +56,7 @@ export default ({
 
                     return (
                       <TableCell
-                        className="white-space-no"
+                        className={`white-space-no ${key !== 'id' && item.cellClass ? item.cellClass : ''}`}
                         key={index}
                       >{getValue(item, key) as string | number | JSX.Element}</TableCell>
                     )

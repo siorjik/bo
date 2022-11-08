@@ -4,6 +4,9 @@ export const loginPath = '/login'
 export const kwlPath = '/kuva-white-label'
 export const kwlSitesPath = `${kwlPath}/sites`
 export const kwlUsersPath = `${kwlPath}/users`
+export const kwlCountriesPath = `${kwlPath}/countries`
+export const kwlEditCountriesPath = `${kwlCountriesPath}/:id/edit`
+export const getKwlEditCountriesPath = (id: number) => `${kwlCountriesPath}/${id}/edit`
 
 // top up
 export const topUpPath = '/top-up'
