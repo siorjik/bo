@@ -17,7 +17,22 @@ export type TopUpUsdkDataType = {
   status: number,
 }
 
+export type TopUpCashrailDataType = {
+  agent: UserDataType,
+  id: number,
+  extId: string,
+  createdDate: string,
+  reference: string,
+  sourceAmount: number,
+  sourceCurrency: string,
+  destinationAmount: number,
+  destinationCurrency: string,
+  status: number,
+  requestType: number,
+}
+
 export type TopUpType = {
   usdk: EntityType<TopUpUsdkDataType>,
+  cashrail: EntityType<TopUpCashrailDataType>
   error: string,
 }

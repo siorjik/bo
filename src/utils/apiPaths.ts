@@ -33,3 +33,4 @@ export const apiCashOutPendingPath = `${apiCashOutPath}/pending`
 // top up
 const apiTopUpPath = `${backOfficeApiPath}/top-up-requests`
 export const apiTopUpUsdkPath = `${apiTopUpPath}/usdk`
+export const apiTopUpCashrailPath = `${apiTopUpPath}/cash-rail`

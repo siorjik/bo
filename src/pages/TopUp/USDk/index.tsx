@@ -43,7 +43,6 @@ const USDk = () => {
   }
 
   const fetchData = async (params: { [key: string]: string | number } = pagination, isApply: boolean = false) => {
-    //const queryString = getQueryString({ query: !isResetPagination || isApply ? query : '', ...params })
     let queryString
 
     if (!isResetPagination || isApply) queryString = getQueryString({ ...query, ...params })
