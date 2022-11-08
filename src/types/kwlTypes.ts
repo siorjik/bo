@@ -1,4 +1,4 @@
-export type KWLSiteData = {
+export type KWLSiteDataType = {
   id: number,
   extId: string,
   hostUrl: string,
@@ -10,9 +10,11 @@ export type KWLSiteData = {
   senderName: string,
   senderEmail: string,
   agentGroupId: number,
+  sourceCountryIds: number[],
+  receiveCountryIds: number[],
 }
 
-export type KWLUserData = {
+export type KWLUserDataType = {
   id: number,
   createdDate: string,
   name: string,
@@ -24,14 +26,21 @@ export type KWLUserData = {
 
 export type KWLTypes = {
   site: {
-    list: KWLSiteData[],
+    list: KWLSiteDataType[],
     listFetchStart: boolean,
     listFetchFinished: boolean,
   },
   user: {
-    list: KWLUserData[],
+    list: KWLUserDataType[],
     listFetchStart: boolean,
     listFetchFinished: boolean,
   },
+  data: KWLSiteDataType,
+  dataFetchStart: boolean,
+  dataFetchFinished: boolean,
+  setCountryStart: boolean,
+  setCountryFinished: boolean,
+  deleteCountryStart: boolean,
+  deleteCountryFinished: boolean,
   error: string,
 }

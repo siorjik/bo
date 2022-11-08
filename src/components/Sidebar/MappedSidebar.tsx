@@ -66,6 +66,7 @@ import {
   transactionsIncorectRatePath,
   mobileTransfersTransferTablePath,
   mobileTransfersOrderTablePath,
+  kwlCountriesPath,
 } from '../../utils/appPaths'
 
 export default (
@@ -90,8 +91,9 @@ export default (
               Kuva White Label
               {getCollapseExpandIcon(open.kwl)}
             </h4>
-            <NavLink className='item-link' to={kwlSitesPath}>KWL Sites</NavLink>
+            <NavLink className='item-link' to={kwlSitesPath}>Sites</NavLink>
             <NavLink className='item-link' to={kwlUsersPath}>Users</NavLink>
+            <NavLink className='item-link' to={kwlCountriesPath}>Countries</NavLink>
           </Collapse>
         </div>
       </MenuItem>

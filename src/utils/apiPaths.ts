@@ -1,6 +1,7 @@
 export const backOfficeApiPath = process.env.REACT_APP_BACK_OFFICE_API_PATH
 
 export const apiAccountsPath = `${backOfficeApiPath}/accounts`
+export const apiCountriesPath = `${backOfficeApiPath}/country`
 
 // auth
 export const apiLoginPath = `${apiAccountsPath}/login`
@@ -16,8 +17,14 @@ export const apiAuthenticatorConfirmPath = `${apiAccountsPath}/authenticator/con
 export const apiAuthenticatorDisablePath = `${apiAccountsPath}/authenticator/disable`
 
 // kwl
-export const apiKWLSitesPath = `${backOfficeApiPath}/kwl`
-export const apiKWLUsersPath = `${backOfficeApiPath}/kwl/users`
+const apiKWLPath = `${backOfficeApiPath}/kwl`
+export const apiKWLSitesPath = `${apiKWLPath}`
+export const apiKWLUsersPath = `${apiKWLPath}/users`
+export const getApiKWLByIdPath = (id: number) => `${apiKWLPath}/${id}`
+export const getApiKWLSourceCountryPath = (kwlId: number, countryId: number) =>
+  `${apiKWLPath}/${kwlId}/source-country/${countryId}`
+export const getApiKWLRecieveCountryPath = (kwlId: number, countryId: number) =>
+  `${apiKWLPath}/${kwlId}/receive-country/${countryId}`
 
 // cashout
 const apiCashOutPath = `${backOfficeApiPath}/cash-outs`

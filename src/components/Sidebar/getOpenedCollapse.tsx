@@ -60,6 +60,7 @@ import {
   mobileTransfersPath,
   mobileTransfersTransferTablePath,
   mobileTransfersOrderTablePath,
+  kwlCountriesPath,
 } from '../../utils/appPaths'
 
 export default (path: string) => {
@@ -67,6 +68,7 @@ export default (path: string) => {
     case kwlPath:
     case kwlUsersPath:
     case kwlSitesPath:
+    case kwlCountriesPath:
       return collapseItems.KWL
 
     case topUpPath:

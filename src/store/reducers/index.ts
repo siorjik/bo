@@ -8,6 +8,7 @@ import user from './userReducer'
 import kwl from './kwlReducers'
 import cashOut from './cashOutReducer'
 import topUp from './topUpReducer'
+import country from './countryReducer'
 
 const rootReducer = combineReducers({
   auth,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   kwl,
   cashOut,
   topUp,
+  country,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

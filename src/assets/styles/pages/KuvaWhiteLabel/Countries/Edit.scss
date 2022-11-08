@@ -1,0 +1,29 @@
+.kwl-countries {
+  width: 100%;
+  height: calc(100vh - 140px);
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+
+  &-block {
+    width: 50%;
+    height: 100%;
+
+    &-top {
+      height: 110px;
+
+      @media all and (max-width: 768px) {
+        height: 150px;
+      }
+    }
+
+    &-list {
+      height: calc(100% - 110px);
+      overflow: auto;
+
+      @media all and (max-width: 768px) {
+        height: calc(100% - 150px);
+      }
+    }
+  }
+}
