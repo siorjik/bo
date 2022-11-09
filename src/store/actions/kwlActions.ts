@@ -3,10 +3,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import {
   DELETE_KWL_RECEIVE_COUNTRY,
   DELETE_KWL_SOURCE_COUNTRY,
-  FETCH_KWL_BY_ID, FETCH_KWL_SITE_LIST,
+  FETCH_KWL_DATA_BY_ID,
+  FETCH_KWL_SITE_LIST,
   FETCH_KWL_USER_LIST,
   SET_KWL_RECEIVE_COUNTRY,
-  SET_KWL_SOURCE_COUNTRY
+  SET_KWL_SOURCE_COUNTRY,
 } from './actionTypes'
 
 import { apiKWLSitesPath, apiKWLUsersPath, getApiKWLByIdPath } from '../../utils/apiPaths'
@@ -43,7 +44,7 @@ export const fetchKWLUserList = createAsyncThunk<KWLUserDataType[], undefined, {
 )
 
 export const fetchKWLDataById = createAsyncThunk<KWLSiteDataType, number, { rejectValue: ErrType }>(
-  FETCH_KWL_BY_ID,
+  FETCH_KWL_DATA_BY_ID,
   async (id, { rejectWithValue, dispatch }) => {
     try {
       const result = await apiRequestServiceWithRefresh(dispatch, 'get', getApiKWLByIdPath(id))

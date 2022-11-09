@@ -31,8 +31,11 @@ export type TopUpCashrailDataType = {
   requestType: number,
 }
 
+export type TopUpKWLDataType = TopUpCashrailDataType & { agent: null | UserDataType }
+
 export type TopUpType = {
   usdk: EntityType<TopUpUsdkDataType>,
-  cashrail: EntityType<TopUpCashrailDataType>
+  cashrail: EntityType<TopUpCashrailDataType>,
+  kwl: EntityType<TopUpKWLDataType>,
   error: string,
 }

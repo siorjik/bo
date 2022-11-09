@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { TopUpType } from '../../types/topUpTypes'
-import { fetchTopUpCashrailList, fetchTopUpUsdkList  } from '../actions/topUpActions'
+import { fetchTopUpCashrailList, fetchTopUpKWLList, fetchTopUpUsdkList  } from '../actions/topUpActions'
 import { getList } from './initialStates'
 
 const initialState: TopUpType = {
   usdk: { ...getList() },
   cashrail: { ...getList() },
+  kwl: { ...getList() },
   error: '',
 }
 
@@ -37,6 +38,18 @@ const topUp = createSlice({
         state.cashrail.list = action.payload
       })
       .addCase(fetchTopUpCashrailList.rejected, (state, action) => {
+        state.error = action.payload!.message
+      })
+
+      .addCase(fetchTopUpKWLList.pending, (state) => {
+        state.kwl.listFetchStart = true
+      })
+      .addCase(fetchTopUpKWLList.fulfilled, (state, action) => {
+        state.kwl.listFetchFinished = true
+        state.kwl.listFetchStart = false
+        state.kwl.list = action.payload
+      })
+      .addCase(fetchTopUpKWLList.rejected, (state, action) => {
         state.error = action.payload!.message
       })
   },
