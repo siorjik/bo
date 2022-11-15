@@ -6,7 +6,7 @@ export type EntityType<T> = {
   },
   listFetchStart: boolean,
   listFetchFinished: boolean,
-  data?: T, 
+  data?: T,
 }
 
 export type  ResultListType<T> = {

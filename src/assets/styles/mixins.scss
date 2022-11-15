@@ -40,6 +40,10 @@ $j-contents: center, end, space-between, space-around;
   text-overflow: ellipsis;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 // width, height, margin, padding
 @for $i from 1 through 500 {
   .h-#{$i}-vh {
@@ -93,7 +97,7 @@ $j-contents: center, end, space-between, space-around;
 }
 
 // colors
-$colors: (aqua: $aqua, red: red, orange: orange, green: green, white: white, black: black);
+$colors: (aqua: $aqua, red: red, orange: orange, green: green, white: white, black: black, grey: grey);
 @each $key, $val in $colors {
   .color-#{$key} {
     color: $val;

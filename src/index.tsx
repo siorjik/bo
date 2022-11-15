@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals'
 
 import store from './store/index'
 
+import 'antd/dist/antd.min.css'
 import './assets/styles/index.scss'
 import ErrorBoundary from './components/ErrorBoundary'
 

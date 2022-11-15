@@ -35,3 +35,5 @@ const apiTopUpPath = `${backOfficeApiPath}/top-up-requests`
 export const apiTopUpUsdkPath = `${apiTopUpPath}/usdk`
 export const apiTopUpCashrailPath = `${apiTopUpPath}/cash-rail`
 export const apiTopUpKWLPath = `${apiTopUpPath}/kwl`
+
+export const apiMobileUsersPath = `${backOfficeApiPath}/mobile-users`

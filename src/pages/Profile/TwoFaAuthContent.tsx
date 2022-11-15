@@ -89,7 +89,7 @@ export default (
                 <span className="background-black color-white p-3">{authenticator.sharedKey}</span>&nbsp;
                 into your two factor authenticator app. Spaces and casing do not matter.</span>
             </p>
-            <Alert severity="info">
+            <Alert className="mt-30" severity="info">
               To enable QR code generation please read our &nbsp;
               <a
                 className="link-a"

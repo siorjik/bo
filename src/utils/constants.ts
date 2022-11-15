@@ -117,3 +117,58 @@ export const riskLevelMarker: { [key: number]: string } = {
   30: 'red',
   40: 'black',
 }
+
+export const mobileUserStatus: ObjValueWithColorType = {
+  10: {
+    color: 'orange',
+    value: 'PENDING',
+  },
+  20: {
+    color: 'aqua',
+    value: 'ACCEPTED',
+  },
+  30: {
+    color: 'red',
+    value: 'REJECTED',
+  },
+  40: {
+    color: 'red',
+    value: 'BLOCKED',
+  },
+  50: {
+    color: 'red',
+    value: 'DELETE',
+  },
+  60: {
+    color: '',
+    value: 'COUNTDOWN',
+  },
+  70: {
+    color: 'grey',
+    value: 'HOLD ON',
+  },
+  80: {
+    color: 'grey',
+    value: 'NOT VERIFIED',
+  },
+  90: {
+    color: 'grey',
+    value: 'INITIATED VERIFICATION',
+  },
+  100: {
+    color: 'grey',
+    value: 'PENDING VERIFICATION',
+  },
+  110: {
+    color: 'grey',
+    value: 'FAILED VERIFICATION',
+  },
+  120: {
+    color: 'grey',
+    value: 'FAILED VERIFICATION WITH RETRY',
+  },
+  130: {
+    color: 'orange',
+    value: 'GUEST',
+  },
+}
