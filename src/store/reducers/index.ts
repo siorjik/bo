@@ -10,6 +10,7 @@ import cashOut from './cashOutReducer'
 import topUp from './topUpReducer'
 import country from './countryReducer'
 import mobileUser from './mobileUserReducer'
+import transaction from './transactionReducer'
 
 const rootReducer = combineReducers({
   auth,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   topUp,
   country,
   mobileUser,
+  transaction,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

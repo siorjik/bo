@@ -76,32 +76,32 @@ const Edit = () => {
       if (!!all.length) {
         await Promise.all(all.map(async (item: number) =>
           await dispatch(setKWLCountry(getApiData().addAction)(getApiData(item).apiPath))))
-
-        setCountries({ ...countries, all: [] })
       } else return false
     } else {
       if (!!added.length) {
         await Promise.all(added.map(async (item: number) =>
           await dispatch(deleteKWLCountry(getApiData().delAction)(getApiData(item).apiPath))))
-
-          setCountries({ ...countries, added: [] })
-        } else return false
-      }
+      } else return false
+    }
 
     await dispatch(fetchKWLDataById(+id!))
+
+    setCountries({ all: [], added: [] })
   }
-  
+
   return (
     <Container className="pt-25">
       {dataFetchStart || listFetchStart ? <Loader /> : <div className="kwl-countries">
         <div className="kwl-countries-block">
-          <h3 className="mb-20">{title}:</h3>
-          <Button
-            className="mb-20"
-            variant="contained"
-            onClick={() => onSubmit('remove')}
-            disabled={!countries.added.length}
-          >Remove</Button>
+          <div className="kwl-countries-block-top">
+            <h3 className="mb-20">{title}:</h3>
+            <Button
+              className="mb-20"
+              variant="contained"
+              onClick={() => onSubmit('remove')}
+              disabled={!countries.added.length}
+            >Remove</Button>
+          </div>
           <div className="kwl-countries-block-list">
             {
               list.map(item => {
@@ -123,7 +123,7 @@ const Edit = () => {
         <div className="kwl-countries-block">
           <div className="kwl-countries-block-top">
             <h3 className="mb-20">All Countries:</h3>
-            <Button 
+            <Button
               className="mb-20"
               variant="contained"
               onClick={() => onSubmit('add')}

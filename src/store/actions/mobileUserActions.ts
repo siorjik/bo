@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import { FETCH_MOBILE_USER_LIST } from "./actionTypes"
 
 import { ResultListType, RequestErrType } from "../../types/generalTypes"
-import { MobileUserDataType } from "../../types/mobileUserType"
+import { MobileUserDataType } from "../../types/mobileUserTypes"
 import { apiMobileUsersPath } from "../../utils/apiPaths"
 import apiRequestServiceWithRefresh from "../../services/apiRequestServiceWithRefresh"
 

@@ -4,7 +4,7 @@ import { FETCH_COUNTRY_LIST } from './actionTypes'
 
 import { apiCountriesPath } from '../../utils/apiPaths'
 
-import { CountryDataType } from '../../types/countryType'
+import { CountryDataType } from '../../types/countryTypes'
 import apiRequestServiceWithRefresh from '../../services/apiRequestServiceWithRefresh'
 import { RequestErrType } from '../../types/generalTypes'
 

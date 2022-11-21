@@ -23,6 +23,12 @@ $j-contents: center, end, space-between, space-around;
   }
 }
 
+.align-self {
+  &-end {
+    align-self: flex-end;
+  }
+}
+
 // text
 .text {
   &-center {
@@ -97,7 +103,10 @@ $j-contents: center, end, space-between, space-around;
 }
 
 // colors
-$colors: (aqua: $aqua, red: red, orange: orange, green: green, white: white, black: black, grey: grey);
+$colors: (
+  aqua: $aqua, red: red, orange: orange, green: green, white: white,
+  black: black, grey: grey, blue: blue
+);
 @each $key, $val in $colors {
   .color-#{$key} {
     color: $val;

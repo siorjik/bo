@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { MobileUserType } from '../../types/mobileUserType'
+import { MobileUserType } from '../../types/mobileUserTypes'
 import { fetchMobileUserList } from '../actions/mobileUserActions'
 import { getList } from './initialStates'
 

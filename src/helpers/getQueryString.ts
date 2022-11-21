@@ -1,4 +1,4 @@
-export default (params: { [key: string]: string | number | boolean }) => {
+export default (params: { [key: string]: string | number | boolean | { [key: string]: string } }) => {
   for (const[key, val] of Object.entries(params)) {
     if (val === '') delete params[key]
   }

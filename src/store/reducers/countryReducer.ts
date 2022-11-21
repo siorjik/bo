@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { CountryType } from '../../types/countryType'
+import { CountryType } from '../../types/countryTypes'
 import { fetchCountryList } from '../actions/countryActions'
 
 const initialState: CountryType = {

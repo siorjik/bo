@@ -7,7 +7,7 @@ import Table from "../../../components/Table"
 import { useAppDispatch, useAppSelector } from "../../../store"
 import { fetchTopUpUsdkList } from "../../../store/actions/topUpActions"
 import getQueryString from "../../../helpers/getQueryString"
-import { fundsType, riskLevelMarker, topUpStatuses } from "../../../utils/constants"
+import { fundTypes, riskLevelMarkers, topUpStatuses } from "../../../utils/constants"
 
 type PaginationStateType = { offset: number, pageSize: number }
 
@@ -68,8 +68,8 @@ const USDk = () => {
     userName: item.user && `${item.user.firstName} ${item.user.lastName}`,
     userPhone: item.user && item.user.phoneNumber,
     status: <span className={`color-${topUpStatuses[item.status].color}`}>{topUpStatuses[item.status].value}</span>,
-    requestType: <span className={`color-${fundsType[item.requestType].color}`}>{fundsType[item.requestType].value}</span>,
-    riskScore: <span className={`color-${riskLevelMarker[item.riskScore]}`}>{item.riskScore}</span>,
+    requestType: <span className={`color-${fundTypes[item.requestType].color}`}>{fundTypes[item.requestType].value}</span>,
+    riskScore: <span className={`color-${riskLevelMarkers[item.riskScore]}`}>{item.riskScore}</span>,
     detailsBtn: (
       <Button size="small" variant='contained' href={`${domain}/TopUp/USDk/${item.id}`} target='_blank'>Details</Button>
     )

@@ -10,7 +10,7 @@ import Table from "../../components/Table"
 import getQueryString from "../../helpers/getQueryString"
 import { useAppDispatch, useAppSelector } from "../../store"
 import { fetchMobileUserList } from "../../store/actions/mobileUserActions"
-import { mobileUserStatus, riskLevelMarker } from "../../utils/constants"
+import { mobileUserStatuses, riskLevelMarkers } from "../../utils/constants"
 
 type PaginationStateType = { offset: number, pageSize: number }
 
@@ -122,8 +122,8 @@ const MobileUsers = () => {
   const mappedData = items.map(item =>
   ({
     ...item,
-    riskScore: <span className={`color-${riskLevelMarker[item.riskScore]}`}>{item.riskScore}</span>,
-    status: <span className={`color-${mobileUserStatus[item.status].color}`}>{mobileUserStatus[item.status].value}</span>,
+    riskScore: <span className={`color-${riskLevelMarkers[item.riskScore]}`}>{item.riskScore}</span>,
+    status: <span className={`color-${mobileUserStatuses[item.status].color}`}>{mobileUserStatuses[item.status].value}</span>,
     fullName: <span>{item.firstName} {item.lastName}</span>,
     roles: <span>{item.roles.join(',')}</span>,
     transactions: (

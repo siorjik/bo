@@ -7,7 +7,7 @@ import Table from "../../../components/Table"
 import { useAppDispatch, useAppSelector } from "../../../store"
 import { fetchTopUpKWLList } from "../../../store/actions/topUpActions"
 import getQueryString from "../../../helpers/getQueryString"
-import { fundsType, topUpStatuses } from "../../../utils/constants"
+import { fundTypes, topUpStatuses } from "../../../utils/constants"
 
 type PaginationStateType = { offset: number, pageSize: number }
 
@@ -64,7 +64,7 @@ const KWL = () => {
     from: `${item.sourceAmount} ${item.sourceCurrency}`,
     to: `${item.destinationAmount} ${item.destinationCurrency}`,
     status: <span className={`color-${topUpStatuses[item.status].color}`}>{topUpStatuses[item.status].value}</span>,
-    requestType: <span className={`color-${fundsType[item.requestType].color}`}>{fundsType[item.requestType].value}</span>,
+    requestType: <span className={`color-${fundTypes[item.requestType].color}`}>{fundTypes[item.requestType].value}</span>,
     detailsBtn: (
       <Button size="small" variant='contained' href={`${domain}/TopUp/USDk/${item.id}`} target='_blank'>Details</Button>
     )

@@ -37,3 +37,6 @@ export const apiTopUpCashrailPath = `${apiTopUpPath}/cash-rail`
 export const apiTopUpKWLPath = `${apiTopUpPath}/kwl`
 
 export const apiMobileUsersPath = `${backOfficeApiPath}/mobile-users`
+
+// transactions
+export const apiTransactionsAllPath = `${backOfficeApiPath}/transactions`

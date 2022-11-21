@@ -5,7 +5,7 @@ import Pagination from './Pagination'
 
 type ObjDataType = {
   [key: string]:
-  string | number | boolean | JSX.Element | number[] | string[] |
+  string | number | boolean | JSX.Element | number[] | string[] | null |
   { [key: string]: string | number | boolean | [] }
 }
 
